@@ -17,3 +17,27 @@ data/reranker_data/*.jsonl
 embedding_evaluation/gte-Qwen2-1.5B-instruct/*
 embedding_evaluation/env/*
 embedding_evaluation/data/*
+
+# Log files
+*.log
+output.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Cache & temp files
+*.cache
+*.tmp
+.DS_Store
+
+# Models (local)
+models/*
+!models/.gitkeep
+
+# Vector cache & index files (regenerable)
+data/cache/*.npy
+data/parsed/*.npy

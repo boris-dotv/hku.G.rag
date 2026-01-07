@@ -1,0 +1,538 @@
+{
+  "comparison": "5 queries x 3 systems (Fixed RRF Bug)",
+  "systems": [
+    "Naive Parse + Naive RAG (Dense Only - Cosine Similarity)",
+    "Enhanced Parse + Naive RAG (Dense Only - Cosine Similarity)",
+    "Enhanced Parse + Enhanced RAG (RRF + BM25 + Dense + Reranker)"
+  ],
+  "chunk_counts": {
+    "naive_parse": 555,
+    "enhanced_parse": 1956
+  },
+  "pipeline_config": {
+    "embedding": "qwen3-embedding-4b",
+    "reranker": "qwen3-reranker-8b"
+  },
+  "results": [
+    {
+      "query": "What is the difference between machine learning and deep learning?",
+      "systems": [
+        {
+          "name": "Naive Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.7606",
+              "0.7350",
+              "0.7016"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "baseline_page_15",
+                "source_type": "baseline_page",
+                "content": "Deep Learning Vs Machine Learning \nDeep learning is a machine learning \nData dependency Hardware dependency\nDeep learning depend on the high -end machine where \nMachine learning can work with a low-en..."
+              },
+              {
+                "chunk_id": "baseline_page_24",
+                "source_type": "baseline_page",
+                "content": "Types of Machine Learning \nDATA..."
+              },
+              {
+                "chunk_id": "baseline_page_38",
+                "source_type": "baseline_page",
+                "content": "Processes involved in Machine Learning..."
+              }
+            ],
+            "answer": "The main difference between machine learning and deep learning lies in their approaches, requirements, and capabilities.\n\n**Machine Learning:**\n\nMachine learning is a subset of artificial intelligence that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. It generally involves the following aspects:\n\n1. **Data Dependency:** Machine learning models require data to learn from, and the quality of data plays a crucial role in the performance of the model.\n   \n2. **Hardware Dependency:** Machine learning models can often work well with less powerful hardware. Not all machine learning algorithms require high-end machines.\n\n3. **Complexity:** Machine learning algorithms can range from simple linear regression to more complex algorithms like support vector machines, decision trees, and random forests. These models are generally good for tasks that require a medium level of complexity.\n\n**Deep Learning:**\n\nDeep learning is a specialized subset of machine learning that involves neural networks with many layers (hence \"deep\"). These neural networks attempt to simulate the behavior of the human brain—albeit in a very simplified form. Here are its key characteristics:\n\n1. **Data Dependency:** Deep learning requires a large amount of data to train effectively. The performance of deep learning models increases significantly with the amount of training data.\n   \n2. **Hardware Dependency:** Deep learning models are highly dependent on high-end hardware with powerful GPUs because they involve a vast number of matrix multiplications which are computationally very expensive.\n   \n3. **Complexity:** Deep learning models can handle highly complex tasks such as image recognition, natural language processing, and speech recognition. The layered architecture of deep neural networks enables them to learn feature representations automatically at multiple levels of abstraction.\n\nIn summary, deep learning can be seen as an extension of machine learning that is capable of handling more complex tasks but also requires more data and computational resources. Machine learning is more versatile in terms of hardware requirements and can be applied to a wide range of tasks, but it may not be able to tackle the most complex tasks that deep learning can handle."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.7674",
+              "0.7394",
+              "0.6904"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "text_fixed_256_2304",
+                "source_type": "text_fixed_256",
+                "content": "tion contains structured data in: table_14_0]\n\n\n\nExample of Deep Learning\n\nDeep Learning Vs Machine Learning\nis\nDeep learning a machine learning\nDeep learning depend on the high-end machine where\nMach..."
+              },
+              {
+                "chunk_id": "table_16_0",
+                "source_type": "table",
+                "content": "| 0                                   | 1                                                  |\n|:------------------------------------|:---------------------------------------------------|\n| Deep Learnin..."
+              },
+              {
+                "chunk_id": "table_5_0",
+                "source_type": "table",
+                "content": "| 0                                   | 1                                      |\n|:------------------------------------|:---------------------------------------|\n|                                     ..."
+              }
+            ],
+            "answer": "The text you've provided seems to be a fragment of a comparison between machine learning and deep learning. Let's clarify the difference based on the context you've given and general knowledge in the field:\n\nMachine Learning (ML):\n- Machine learning is a subset of artificial intelligence (AI) that provides systems the ability to automatically learn and improve from experience without being explicitly programmed.\n- It can work with a wide range of hardware, including low-end machines, depending on the complexity of the task and the algorithm being used.\n- Machine learning models can be categorized into several types, such as supervised learning, unsupervised learning, semi-supervised learning, and reinforcement learning.\n- It often requires less computational power compared to deep learning, as the algorithms are typically not as complex.\n- Machine learning can handle smaller to moderately sized datasets and is effective in many real-world applications like spam detection, recommendation systems, and linear regression, among others.\n\nDeep Learning (DL):\n- Deep learning is a specialized subset of machine learning that involves neural networks with many layers (hence \"deep\"). These neural networks attempt to simulate the behavior of the human brain—albeit in a very simplified form—allowing the system to recognize patterns and feature hierarchies, making it particularly effective for tasks like image and speech recognition.\n- Deep learning requires high-end machines with powerful GPUs (Graphical Processing Units) or TPUs (Tensor Processing Units), as it involves a vast amount of matrix multiplication and complex computations.\n- It can process and learn from large amounts of unstructured data, such as images, videos, and text.\n- Deep learning models, such as convolutional neural networks (CNNs) for image recognition or recurrent neural networks (RNNs) for natural language processing, can achieve state-of-the-art performance on specific tasks but at the cost of requiring more data and computational resources.\n\nIn summary, the main difference lies in the complexity and computational requirements. Machine learning is more broad and can operate effectively on a range of hardware, while deep learning is a specialized subset that requires more powerful hardware and larger datasets to achieve its full potential."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Enhanced RAG",
+          "result": {
+            "method": "Enhanced RAG (RRF + Rerank)",
+            "top_scores": [
+              "0.9474",
+              "0.9363",
+              "0.9173",
+              "0.9161",
+              "0.8775"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "table_16_0",
+                "source_type": "table",
+                "content": "| 0                                   | 1                                                  |\n|:------------------------------------|:---------------------------------------------------|\n| Deep Learnin..."
+              },
+              {
+                "chunk_id": "text_window_800_1800",
+                "source_type": "text_sliding_window_800",
+                "content": "Machine Learning\nY\nX\nHight (cm)\n)gk(\nthgieW\nW=H-100\n\nExample of Machine Learning\nY\nX\nHight (cm)\n)gk(\nthgieW\nW=H-100\nError\nError\nMinimize Error\n\nWhat is Deep Learning\nDeep learning is a particular kind..."
+              },
+              {
+                "chunk_id": "text_fixed_512_2048",
+                "source_type": "text_fixed_512",
+                "content": "ctionality of brain cells called neurons which led to the concept of artificial\nneural network.\n\nExample of Deep Learning\n▪ Sides = 4\n▪ Closed\n▪ Perpendicular\n▪ Equal sizes\nWell, it is nothing but a n..."
+              },
+              {
+                "chunk_id": "text_fixed_1024_2048",
+                "source_type": "text_fixed_1024",
+                "content": "ctionality of brain cells called neurons which led to the concept of artificial\nneural network.\n\nExample of Deep Learning\n▪ Sides = 4\n▪ Closed\n▪ Perpendicular\n▪ Equal sizes\nWell, it is nothing but a n..."
+              },
+              {
+                "chunk_id": "text_fixed_256_2304",
+                "source_type": "text_fixed_256",
+                "content": "tion contains structured data in: table_14_0]\n\n\n\nExample of Deep Learning\n\nDeep Learning Vs Machine Learning\nis\nDeep learning a machine learning\nDeep learning depend on the high-end machine where\nMach..."
+              }
+            ],
+            "answer": "Machine Learning (ML) and Deep Learning (DL) are both subsets of Artificial Intelligence, but they differ in terms of their approach, complexity, and requirements.\n\nMachine Learning:\n- Machine Learning is a broader field that includes various algorithms and techniques. It allows machines to learn from data and improve their performance on a specific task without being explicitly programmed for it.\n- ML models can range from simple linear regression to more complex algorithms like decision trees, support vector machines, etc.\n- These models can work well with smaller datasets and do not necessarily require high-end hardware. They can be run on low-end machines as well.\n- ML models generally do not involve the concept of artificial neural networks or, if they do, they use simpler architectures with fewer layers.\n- In ML, feature extraction is often done manually, and the model is trained on these extracted features.\n\nDeep Learning:\n- Deep Learning is a specific type of machine learning that uses artificial neural networks with many layers (hence \"deep\") to learn from large amounts of data.\n- DL models try to simulate the behavior of the human brain—specifically, the interconnection of neurons.\n- These models require large amounts of data to train effectively and also need high-end hardware (like GPUs) due to the complexity of the calculations involved in the neural network architecture.\n- DL does not necessarily require manual feature extraction; the model can learn feature representations automatically from the raw data.\n- The \"nested hierarchy of basic concepts\" mentioned in the example represents the idea that complex concepts can be built from simpler ones, which is a core principle in deep learning where complex patterns are learned through multiple layers.\n\nIn summary, the key differences are:\n\n1. Model Complexity: Machine Learning uses simpler models compared to Deep Learning's complex neural networks.\n2. Data Dependency: Deep Learning requires larger datasets to perform well, while Machine Learning can work effectively with smaller datasets.\n3. Hardware Dependency: Deep Learning requires high-end hardware (like GPUs) due to the large amount of computation, while Machine Learning can be run on less powerful hardware.\n4. Feature Engineering: In Machine Learning, manual feature extraction is common, whereas in Deep Learning, feature learning is automated."
+          }
+        }
+      ]
+    },
+    {
+      "query": "How to calculate F1 Score from confusion matrix?",
+      "systems": [
+        {
+          "name": "Naive Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.6515",
+              "0.6200",
+              "0.5932"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "baseline_page_77",
+                "source_type": "baseline_page",
+                "content": "Confusion Matrix Metrics \nWhat does F1 Score?\nF1-score is a metric  which  takes  into account  \nboth precision and recall and is defined  as follows\nConfusion matrix for healthy vs unhealthy \npeople ..."
+              },
+              {
+                "chunk_id": "baseline_page_73",
+                "source_type": "baseline_page",
+                "content": "Implementation of Logistic Regression\nStep -8: Display the confusion matrix:\nA confusion matrix , also known as an error matrix, is a specific table \nlayout that allows visualization of the performanc..."
+              },
+              {
+                "chunk_id": "baseline_page_109",
+                "source_type": "baseline_page",
+                "content": "Implementation of KNN Algorithm\nStep -8: Display the confusion matrix:\nAccuracy:\n𝑇𝑃+𝑇𝑁\n𝑃+𝑁 = 64+29\n100=0.93\nMisclassification Rate:\n𝐹𝑃+𝐹𝑁\n𝑃+𝑁 = 3+4\n100=0.07..."
+              }
+            ],
+            "answer": "The F1 Score can be calculated directly from the confusion matrix using the following formula:\n\n\\[ F1 \\ Score = 2 \\times \\frac{TP}{2 \\times TP + FP + FN} \\]\n\nHere's how you can interpret the components of the formula from the confusion matrix:\n\n- TP (True Positives): The number of items correctly identified as positive (in your examples, \"healthy\" or \"unhealthy\" depending on the context).\n- FP (False Positives): The number of items incorrectly identified as positive.\n- FN (False Negatives): The number of items incorrectly identified as negative.\n\nGiven these, you can calculate the F1 Score as follows:\n\n1. Divide the number of True Positives by the sum of:\n   - Twice the number of True Positives\n   - The number of False Positives\n   - The number of False Negatives\n\n2. Multiply the result by 2.\n\nHere's an example using the confusion matrix data provided in your context for the KNN Algorithm:\n\n- TP = 64 (healthy people correctly identified)\n- FP = 3 (unhealthy people incorrectly identified as healthy)\n- FN = 4 (healthy people incorrectly identified as unhealthy)\n\n\\[ F1 \\ Score = 2 \\times \\frac{TP}{2 \\times TP + FP + FN} \\]\n\\[ F1 \\ Score = 2 \\times \\frac{64}{2 \\times 64 + 3 + 4} \\]\n\\[ F1 \\ Score = 2 \\times \\frac{64}{129} \\]\n\\[ F1 \\ Score \\approx 0.9845 \\]\n\nThis shows that the F1 Score for the KNN Algorithm classification task is approximately 0.9845, which indicates a high level of precision and recall."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.6159",
+              "0.6151",
+              "0.5839"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "text_fixed_256_18944",
+                "source_type": "text_fixed_256",
+                "content": "e is a metric which takes into account\nboth precision and recall and is defined as follows\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 × 𝑅𝑒𝑐𝑎𝑙𝑙\n𝐹1 𝑆𝑐𝑜𝑟𝑒 = 2 ×\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 + 𝑅𝑒𝑐𝑎𝑙𝑙\nF1 Score becomes 1 only when precision and recall are\nbo..."
+              },
+              {
+                "chunk_id": "text_fixed_256_19200",
+                "source_type": "text_fixed_256",
+                "content": "or healthy vs unhealthy\nboth precision and recall are high. F1 score is the people classification task.\nharmonic mean of precision and recall and is a better\nmeasure than accuracy.\n\n[Reference: This s..."
+              },
+              {
+                "chunk_id": "text_fixed_256_5376",
+                "source_type": "text_fixed_256",
+                "content": "nto Training and Test Randomly picksplit Use Training Data to Train the Model\nTrain\nTraining\nData\nTraining\nData\nDATA\nValidation Model\nData\nTest Use Validation Data\nAccuracy\nData to predict accuracy\nof..."
+              }
+            ],
+            "answer": "The F1 Score can be calculated from a confusion matrix using the following formula:\n\n\\[ F1 \\ Score = 2 \\times \\frac{Precision \\times Recall}{Precision + Recall} \\]\n\nTo calculate Precision and Recall from the confusion matrix, you need to understand the four components of the matrix:\n\n- True Positives (TP): The number of instances that are correctly classified as positive.\n- False Positives (FP): The number of instances that are incorrectly classified as positive (Type I error).\n- False Negatives (FN): The number of instances that are incorrectly classified as negative (Type II error).\n- True Negatives (TN): The number of instances that are correctly classified as negative.\n\nPrecision and Recall are defined as follows:\n\n\\[ Precision = \\frac{TP}{TP + FP} \\]\n\n\\[ Recall = \\frac{TP}{TP + FN} \\]\n\nOnce you have calculated Precision and Recall, you can then use these values to find the F1 Score with the formula provided earlier.\n\nHere's a step-by-step guide to calculating the F1 Score from a confusion matrix:\n\n1. Identify TP, FP, FN, and TN from your confusion matrix.\n2. Calculate Precision using the formula \\( Precision = \\frac{TP}{TP + FP} \\).\n3. Calculate Recall using the formula \\( Recall = \\frac{TP}{TP + FN} \\).\n4. Use Precision and Recall to calculate the F1 Score using the formula \\( F1 \\ Score = 2 \\times \\frac{Precision \\times Recall}{Precision + Recall} \\).\n\nThe F1 Score will give you a single value that represents the balance between Precision and Recall, which is particularly useful when dealing with imbalanced datasets or when both Precision and Recall are important metrics for the classification task."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Enhanced RAG",
+          "result": {
+            "method": "Enhanced RAG (RRF + Rerank)",
+            "top_scores": [
+              "0.9643",
+              "0.9284",
+              "0.9230",
+              "0.9185",
+              "0.6487"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "text_fixed_256_18944",
+                "source_type": "text_fixed_256",
+                "content": "e is a metric which takes into account\nboth precision and recall and is defined as follows\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 × 𝑅𝑒𝑐𝑎𝑙𝑙\n𝐹1 𝑆𝑐𝑜𝑟𝑒 = 2 ×\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 + 𝑅𝑒𝑐𝑎𝑙𝑙\nF1 Score becomes 1 only when precision and recall are\nbo..."
+              },
+              {
+                "chunk_id": "text_fixed_512_18944",
+                "source_type": "text_fixed_512",
+                "content": "e is a metric which takes into account\nboth precision and recall and is defined as follows\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 × 𝑅𝑒𝑐𝑎𝑙𝑙\n𝐹1 𝑆𝑐𝑜𝑟𝑒 = 2 ×\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 + 𝑅𝑒𝑐𝑎𝑙𝑙\nF1 Score becomes 1 only when precision and recall are\nbo..."
+              },
+              {
+                "chunk_id": "text_fixed_1024_18432",
+                "source_type": "text_fixed_1024",
+                "content": " metric\ncalled recall. Recall is also known\nas sensitivity or true positive rate and is defined as\nfollows\n𝑇𝑃\n𝑅𝑒𝑐𝑎𝑙𝑙 =\n𝑇𝑃 + 𝐹𝑁\nConfusion matrix for healthy vs unhealthy\nSo ideally in a good classifier..."
+              },
+              {
+                "chunk_id": "text_window_800_18600",
+                "source_type": "text_sliding_window_800",
+                "content": "\nSo ideally in a good classifier, we want\npeople classification task.\nboth precision and recall to be one which also\nmeans FP and FN are zero. Therefore, we need a metric that\ntakes into account both ..."
+              },
+              {
+                "chunk_id": "text_fixed_256_16640",
+                "source_type": "text_fixed_256",
+                "content": " matrix:\nA confusion matrix, also known as an error matrix, is a specific table\nlayout that allows visualization of the performance of an algorithm.\nAccuracy:\n𝑇𝑃+𝑇𝑁 79+38\n= = 0.87\n𝑃+𝑁 134\nMisclassific..."
+              }
+            ],
+            "answer": "The F1 Score can be calculated directly from a confusion matrix using the following formula:\n\n\\[ F1\\ Score = 2 \\times \\frac{Precision \\times Recall}{Precision + Recall} \\]\n\nTo calculate Precision and Recall from the confusion matrix, you can use these definitions:\n\n- Precision (also called Positive Predictive Value): The proportion of positive identifications that were actually correct.\n\n\\[ Precision = \\frac{TP}{TP + FP} \\]\n\n- Recall (also called Sensitivity or True Positive Rate): The proportion of actual positives that were identified correctly.\n\n\\[ Recall = \\frac{TP}{TP + FN} \\]\n\nWhere:\n- TP = True Positives: The number of items correctly identified as positive.\n- FP = False Positives: The number of items incorrectly identified as positive.\n- FN = False Negatives: The number of items incorrectly identified as negative.\n\nHere is how you would calculate the F1 Score step by step:\n\n1. Calculate True Positives (TP), False Positives (FP), and False Negatives (FN) from your confusion matrix.\n2. Use the TP, FP, and FN to calculate Precision and Recall.\n3. Once you have Precision and Recall, apply the formula for the F1 Score.\n\n\\[ Precision = \\frac{TP}{TP + FP} \\]\n\\[ Recall = \\frac{TP}{TP + FN} \\]\n\\[ F1\\ Score = 2 \\times \\frac{Precision \\times Recall}{Precision + Recall} \\]\n\nThis will give you the F1 Score, which is a measure of the balance between Precision and Recall. The F1 Score reaches its best value at 1 when both Precision and Recall are equal to 1, and it is worse when either Precision or Recall are low, degrading to a score of 0 when either Precision or Recall is 0."
+          }
+        }
+      ]
+    },
+    {
+      "query": "What techniques can prevent overfitting in machine learning?",
+      "systems": [
+        {
+          "name": "Naive Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.6296",
+              "0.6160",
+              "0.6160"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "baseline_page_38",
+                "source_type": "baseline_page",
+                "content": "Processes involved in Machine Learning..."
+              },
+              {
+                "chunk_id": "baseline_page_41",
+                "source_type": "baseline_page",
+                "content": "What we can achieve using scikit -learn..."
+              },
+              {
+                "chunk_id": "baseline_page_42",
+                "source_type": "baseline_page",
+                "content": "What we can achieve using scikit -learn..."
+              }
+            ],
+            "answer": "Error: HTTPSConnectionPool(host='open.bigmodel.cn', port=443): Max retries exceeded with url: /api/paas/v4/chat/completions (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)')))"
+          }
+        },
+        {
+          "name": "Enhanced Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.5857",
+              "0.5561",
+              "0.5544"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "text_fixed_256_5376",
+                "source_type": "text_fixed_256",
+                "content": "nto Training and Test Randomly picksplit Use Training Data to Train the Model\nTrain\nTraining\nData\nTraining\nData\nDATA\nValidation Model\nData\nTest Use Validation Data\nAccuracy\nData to predict accuracy\nof..."
+              },
+              {
+                "chunk_id": "text_fixed_256_20224",
+                "source_type": "text_fixed_256",
+                "content": "to a overfit model\n\n[Reference: This section contains structured data in: table_82_0, table_82_1]\n\n\n\nImplementation of Decision Tree\nDecision Tree and Random Forest: Does Kyphosis exist after a surger..."
+              },
+              {
+                "chunk_id": "text_fixed_256_4608",
+                "source_type": "text_fixed_256",
+                "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+              }
+            ],
+            "answer": "Overfitting is a common problem in machine learning where a model learns the training data too well, including the noise and the specific patterns that do not generalize well to new, unseen data. To prevent overfitting, several techniques can be applied:\n\n1. **Use More Training Data**: Increasing the amount of training data can help the model to learn more generalized patterns and reduce the risk of overfitting.\n\n2. **Data Augmentation**: Creating new training examples by applying transformations to the existing data can also help the model to generalize better.\n\n3. **Cross-Validation**: Instead of using a single train-validation split, cross-validation techniques like k-fold cross-validation can provide a more robust estimate of the model's performance.\n\n4. **Feature Selection**: Choosing the right features can help prevent overfitting. Removing irrelevant or redundant features can make the model simpler and more generalizable.\n\n   - **Feature Scaling**: Normalizing or standardizing features can also help in preventing overfitting.\n\n5. **Model Complexity**: Using simpler models can reduce the risk of overfitting. But if the model is too simple, it may underfit. Finding the right balance is crucial.\n\n   - **Pruning**: In decision trees, pruning can be used to reduce the complexity by removing nodes that do not contribute significantly to the model's accuracy.\n\n6. **Regularization**: Techniques like L1 (Lasso) and L2 (Ridge) regularization can add a penalty to the loss function, discouraging the model from assigning too much importance to any single feature and thereby reducing overfitting.\n\n7. **Early Stopping**: Monitoring the model's performance on a validation set during training and stopping training once the performance starts to degrade can help prevent overfitting.\n\n8. **Dropout**: In neural networks, dropout is a technique where a random set of neurons is ignored during training, which makes the model more robust to the specific training data.\n\n9. **Ensemble Methods**: Using ensemble methods like Random Forest or Gradient Boosting can help. These methods build multiple models and combine their predictions, which can help in reducing overfitting.\n\n10. **Bagging and Boosting**: Bagging (e.g., Bootstrap Aggregating) and boosting are techniques used in ensemble methods that can help reduce the variance of the model and thus prevent overfitting.\n\n11. **Using a Validation Set**: Always hold out a validation set that the model has never seen during training to tune hyperparameters and assess the model's ability to generalize.\n\n12. **Parameter Tuning**: Tuning hyperparameters can also help find the right balance between model complexity and generalization.\n\nBy carefully applying these techniques, it is possible to build models that perform well on unseen data and avoid the trap of overfitting."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Enhanced RAG",
+          "result": {
+            "method": "Enhanced RAG (RRF + Rerank)",
+            "top_scores": [
+              "0.9519",
+              "0.8824",
+              "0.8300",
+              "0.3739",
+              "0.3639"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "text_window_800_4800",
+                "source_type": "text_sliding_window_800",
+                "content": "lled overfitting. To prevent overfitting, there needs to be a fairly\nequal distribution of training samples for each classification, or range if the\nlabel is a real value.\n\nData Imbalance-Overfitting\n..."
+              },
+              {
+                "chunk_id": "text_fixed_256_4608",
+                "source_type": "text_fixed_256",
+                "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+              },
+              {
+                "chunk_id": "text_fixed_512_4608",
+                "source_type": "text_fixed_512",
+                "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+              },
+              {
+                "chunk_id": "text_fixed_256_5120",
+                "source_type": "text_fixed_256",
+                "content": " Train\nTraining\nData\nData\n(90%\nApple,\n10%\nPear)\nTest\nPear\nModel\nData\nThe model will most likely predict the pear as an apple.\nTest Sample is a Pear\nApple\n\n[Reference: This section contains structured ..."
+              },
+              {
+                "chunk_id": "text_fixed_1024_4096",
+                "source_type": "text_fixed_1024",
+                "content": "is all the features (exclude last column)\ny = dataset.iloc[ :, ncols ] # Y is the label (last column)\n# Split the data, with 80% train and 20% test\nX_train, X_test, y_train, y_test = train_test_split(..."
+              }
+            ],
+            "answer": "To prevent overfitting in machine learning, especially in cases of data imbalance, several techniques can be employed:\n\n1. **Data Resampling**:\n   - **Under-sampling**: Decrease the number of samples in the majority class to match the minority class.\n   - **Over-sampling**: Increase the number of samples in the minority class to match the majority class. This can be done through techniques like SMOTE (Synthetic Minority Over-sampling Technique).\n\n2. **Class Weights**: Assign higher weights to the minority class during training to compensate for the class imbalance.\n\n3. **Stratified Sampling**: When splitting the dataset into training and test sets, ensure that both sets have a proportional representation of all classes.\n\n4. **Cross-Validation**: Use techniques such as k-fold cross-validation to train the model on multiple subsets of the training data and average the results to improve generalization.\n\n5. **Regularization**: Techniques like L1 (Lasso) and L2 (Ridge) regularization penalize the model for having too many large coefficients, which can reduce overfitting.\n\n6. **Feature Selection**: Choose the most relevant features to prevent the model from overfitting to noise in the data.\n\n7. **Early Stopping**: Monitor the model's performance on a validation set and stop training once the performance starts to degrade, which can indicate overfitting.\n\n8. **Complexity Reduction**:\n   - Use simpler models that are less likely to overfit.\n   - Limit the complexity of the model, such as the depth of a decision tree or the number of hidden layers in a neural network.\n\n9. **Ensemble Methods**: Combine multiple models to average out their predictions, which can reduce overfitting. Examples include Random Forest, Gradient Boosting Machines, and Adaptive Boosting.\n\n10. **Dropout**: In neural networks, randomly drop out a fraction of input units during training to prevent over-reliance on specific features.\n\n11. **Batch Normalization**: Normalize the input layer by adjusting and scaling the activations.\n\nBy applying these techniques, the risk of overfitting can be significantly reduced, and the model can better generalize to unseen data."
+          }
+        }
+      ]
+    },
+    {
+      "query": "Explain the bagging method in ensemble learning",
+      "systems": [
+        {
+          "name": "Naive Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.6608",
+              "0.6589",
+              "0.5988"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "baseline_page_80",
+                "source_type": "baseline_page",
+                "content": "Random Forest\n▪Builds multiple decision trees and merges them together. \n▪More accurate and stable prediction .\n▪Random decision forests correct for decision trees’ habit of overfitting to their train..."
+              },
+              {
+                "chunk_id": "baseline_page_78",
+                "source_type": "baseline_page",
+                "content": "Decision Tree and Random Forest..."
+              },
+              {
+                "chunk_id": "baseline_page_39",
+                "source_type": "baseline_page",
+                "content": "Introduction to SciKit -Learn library \nfor machine learning algorithms..."
+              }
+            ],
+            "answer": "Bagging, short for Bootstrap Aggregating, is an ensemble learning technique used to improve the stability and accuracy of machine learning algorithms, particularly decision trees. It's a part of the broader category of ensemble methods, which involve combining multiple models to produce a single prediction.\n\nHere's how the bagging method works:\n\n1. **Bootstrap Sampling**: Bagging involves creating multiple datasets by randomly sampling from the original dataset with replacement. This means that some data points will appear more than once in a given sample, and others won't appear at all. Each of these samples is of the same size as the original dataset.\n\n2. **Building Models**: For each of these bootstrap samples, a separate model is built. In the case of random forests, this would mean building multiple decision trees. Each tree is constructed using a random subset of features (attributes) as well, which adds to the diversity of the models.\n\n3. **Aggregating Results**: Once all the models have been built, the final prediction is made by aggregating the results of the individual models. For classification problems, this is typically done by voting (majority voting), where each model's classification is counted, and the class with the most votes becomes the final prediction. For regression problems, the average of the predictions from all the models is taken as the final prediction.\n\nBagging helps to address the following issues:\n\n- **Overfitting**: Individual decision trees are prone to overfitting, especially if they are deep. Bagging reduces overfitting by creating multiple trees on different subsets of the data, which makes the final model more robust and less sensitive to the specifics of any single data point.\n\n- **Variance Reduction**: Since each tree is built on a different bootstrap sample, bagging reduces the variance of the model. This makes the model more stable and less likely to fluctuate with small changes in the training data.\n\n- **Improved Accuracy**: By combining the predictions of many diverse models, bagging often results in a more accurate final prediction than any single model would provide.\n\nThe bagging method is a key component of random forest algorithms, which leverage the power of multiple decision trees to create a strong, generalizable predictive model."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.6188",
+              "0.6121",
+              "0.5653"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "table_81_0",
+                "source_type": "table",
+                "content": "| 0                                      | 1                                                                                               |\n|:---------------------------------------|:----------------..."
+              },
+              {
+                "chunk_id": "text_fixed_256_19968",
+                "source_type": "text_fixed_256",
+                "content": "et.\n▪ Trained with the “bagging” method.\nThe combination of\nlearning model increases\nthe overall result\n\n[Reference: This section contains structured data in: table_81_0]\n\n\n\nRandom Forest\nIf the size ..."
+              },
+              {
+                "chunk_id": "text_fixed_512_19968",
+                "source_type": "text_fixed_512",
+                "content": "et.\n▪ Trained with the “bagging” method.\nThe combination of\nlearning model increases\nthe overall result\n\n[Reference: This section contains structured data in: table_81_0]\n\n\n\nRandom Forest\nIf the size ..."
+              }
+            ],
+            "answer": "The bagging method, short for Bootstrap Aggregating, is an ensemble learning technique used to improve the stability and accuracy of machine learning algorithms, particularly decision trees. It is a part of the broader category of ensemble methods, which involve combining multiple models to produce a single prediction.\n\nHere's how the bagging method works:\n\n1. **Bootstrapping**: Bagging uses bootstrap sampling, which involves randomly selecting samples from the original dataset with replacement. This means that some data points may appear multiple times in a given sample, while others may not appear at all. This process is repeated multiple times to create several bootstrap samples.\n\n2. **Building Models**: Each bootstrap sample is used to train a separate model. In the case of random forests, each sample is used to train a decision tree. Since the samples are drawn randomly, each tree is likely to be different from the others.\n\n3. **Randomness**: In addition to the bootstrapping, bagging also introduces randomness by considering a random subset of features at each split in the decision tree. This further increases the diversity among the models.\n\n4. **Aggregating Predictions**: Once all the models have been trained, the final prediction is made by aggregating the predictions of all individual models. For classification problems, this is often done by majority voting, where the class that receives the most votes is chosen as the final prediction. For regression problems, the average of all the predictions is typically used.\n\nThe bagging method has several benefits:\n\n- **Reducing Overfitting**: By training multiple models on different subsets of the data, bagging helps reduce overfitting, which is a common problem with decision trees. Each tree overfits a different part of the training data, but when their predictions are combined, the overall result is more robust and closer to the true underlying pattern in the data.\n\n- **Increasing Stability**: The combination of multiple models makes the final prediction more stable. Individual models may be sensitive to the specific data points they were trained on, but the ensemble as a whole is less likely to be affected by outliers or noise.\n\n- **Improving Accuracy**: The diverse set of models created by bagging often results in better predictions than any single model in the ensemble.\n\nRandom forests are a powerful example of bagging in action. They are particularly effective for large datasets because they can handle a large number of features and reduce the risk of overfitting that would occur with a single decision tree."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Enhanced RAG",
+          "result": {
+            "method": "Enhanced RAG (RRF + Rerank)",
+            "top_scores": [
+              "0.6469",
+              "0.4823",
+              "0.2942",
+              "0.2838",
+              "0.0716"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "text_fixed_256_19968",
+                "source_type": "text_fixed_256",
+                "content": "et.\n▪ Trained with the “bagging” method.\nThe combination of\nlearning model increases\nthe overall result\n\n[Reference: This section contains structured data in: table_81_0]\n\n\n\nRandom Forest\nIf the size ..."
+              },
+              {
+                "chunk_id": "table_81_0",
+                "source_type": "table",
+                "content": "| 0                                      | 1                                                                                               |\n|:---------------------------------------|:----------------..."
+              },
+              {
+                "chunk_id": "text_fixed_512_19968",
+                "source_type": "text_fixed_512",
+                "content": "et.\n▪ Trained with the “bagging” method.\nThe combination of\nlearning model increases\nthe overall result\n\n[Reference: This section contains structured data in: table_81_0]\n\n\n\nRandom Forest\nIf the size ..."
+              },
+              {
+                "chunk_id": "text_window_800_19800",
+                "source_type": "text_sliding_window_800",
+                "content": "on trees and merges them together.\n▪ More accurate and stable prediction.\n▪ Random decision forests correct for decision trees’ habit of overfitting to their training set.\n▪ Trained with the “bagging”..."
+              },
+              {
+                "chunk_id": "text_fixed_256_19712",
+                "source_type": "text_fixed_256",
+                "content": "ction contains structured data in: table_80_0]\n\n\n\nRandom Forest\n▪ Builds multiple decision trees and merges them together.\n▪ More accurate and stable prediction.\n▪ Random decision forests correct for ..."
+              }
+            ],
+            "answer": "The bagging method, short for Bootstrap Aggregating, is an ensemble learning technique used to improve the stability and accuracy of machine learning algorithms, particularly decision trees. It is a subset of the broader category of ensemble methods, which combine multiple models to produce a single prediction.\n\nHere's how the bagging method works:\n\n1. Bootstrapping: Bagging involves creating multiple datasets by sampling from the original dataset with replacement. This means that some data points will appear in more than one dataset, and others may not appear at all. Each dataset is of the same size as the original dataset.\n\n2. Building Models: A separate model is built using each of the bootstrapped datasets. For example, in the case of a Random Forest, multiple decision trees are constructed, each using one of the bootstrapped datasets.\n\n3. Aggregating: For regression problems, the final prediction is the average of the predictions from all the individual models. For classification problems, the final prediction is typically the class that receives the majority of the votes from all the models.\n\nKey points about the bagging method are:\n\n- **Reducing Variability**: By averaging or voting, bagging reduces the variability of the model and can lead to a more stable and accurate prediction.\n  \n- **Handling Overfitting**: Bagging helps to correct for overfitting, which is a common problem in models like decision trees. Since each tree is trained on a different subset of the data, the aggregation process smooths out the effects of overfitting, leading to better generalization on unseen data.\n\n- **Randomness**: The bagging method often includes elements of randomness. For instance, in Random Forest, not only is the data bootstrapped, but also the features are randomly selected at each split while growing the trees. This further increases the diversity among the models, which is essential for improving the performance of the ensemble.\n\n- **Computational Cost**: While bagging can improve model performance, it does come with a higher computational cost since multiple models need to be trained.\n\nBagging is a powerful technique because it leverages the principle that a group of diverse, individually weak models can together make a more accurate prediction than any single model in the group."
+          }
+        }
+      ]
+    },
+    {
+      "query": "How does a decision tree make split decisions?",
+      "systems": [
+        {
+          "name": "Naive Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.7420",
+              "0.6890",
+              "0.6816"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "baseline_page_78",
+                "source_type": "baseline_page",
+                "content": "Decision Tree and Random Forest..."
+              },
+              {
+                "chunk_id": "baseline_page_85",
+                "source_type": "baseline_page",
+                "content": "Implementation of Decision Tree\nStep -4: Split the dataset into Training and Testing Set\nStep -5: Train Decision Tree..."
+              },
+              {
+                "chunk_id": "baseline_page_84",
+                "source_type": "baseline_page",
+                "content": "Implementation of Decision Tree\nStep -3: Visualize the dataset..."
+              }
+            ],
+            "answer": "A decision tree makes split decisions by evaluating different features in the dataset and finding the best split points that can separate the data into distinct classes or categories with the highest possible purity. This process is iterative and involves the following steps:\n\n1. **Feature Selection**: At each node of the tree, the algorithm selects which feature to split on. It does this by评估 different features according to a criteria, often using a measure called \"impurity.\" Common impurity measures include:\n\n   - **Gini Impurity**: Used for classification tasks, it measures the likelihood of a random sample being misclassified.\n   - **Entropy (Information Gain)**: Also used for classification, it measures the decrease in entropy after a split.\n   - **Mean Squared Error (MSE)**: Used for regression tasks, it measures the average squared difference between the observed actual values and the values predicted by the tree.\n\n2. **Splitting Criteria**: The decision tree algorithm looks for the best split point for the selected feature. This is the point that minimizes the impurity the most. For example, in the case of Gini impurity, it would find the split that results in the least Gini index for the child nodes.\n\n3. **Stopping Criteria**: The tree continues to split until it reaches certain stopping criteria, which can be:\n   - A maximum depth of the tree is reached.\n   - A minimum number of samples required to split an internal node is not met.\n   - The improvement in impurity is below a certain threshold.\n   - The node is pure (all samples belong to the same class).\n\n4. **Greedy Algorithm**: Decision trees are built using a greedy approach. They make the best split decision at the current node without considering the consequences on future split decisions. This can sometimes lead to suboptimal solutions.\n\n5. **Handling Continuous and Categorical Features**: \n   - For continuous features, the decision tree finds the best split point by considering all possible split points and selecting the one that best separates the classes.\n   - For categorical features, the decision tree checks for each category whether splitting the data based on that category leads to a reduction in impurity.\n\nOnce the best split is found based on the above considerations, the data is divided into subsets, and the process continues recursively for each subset until the stopping criteria are met, resulting in a tree structure with decision nodes and leaf nodes. Leaf nodes contain the final prediction for a given input."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Naive RAG",
+          "result": {
+            "method": "Naive RAG (dense_only)",
+            "top_scores": [
+              "0.0000",
+              "0.0000",
+              "0.0000"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "text_fixed_1024_177152",
+                "source_type": "text_fixed_1024",
+                "content": "ess.\nJohn Wiley & Sons.\n5. Ulrich, K., Eppinger, S., & Yang M. (2019). : Product Design and Development. McGraw Hill.\n6. Jung, T. (2019). Augmented Reality and Virtual Reality. The Power of AR and VR ..."
+              },
+              {
+                "chunk_id": "text_window_800_119400",
+                "source_type": "text_sliding_window_800",
+                "content": "This section contains structured data in: table_393_0]\n\n\n\nStability based on Step Response\n• If for any bounded input the output is unbounded the system is said to be unstable.\nu(t)\n𝒚(𝒕)\n1\nPlant\nt\nUni..."
+              },
+              {
+                "chunk_id": "text_window_800_120600",
+                "source_type": "text_sliding_window_800",
+                "content": "ndamentals of control systems.\n▪ Highlight the classification of control systems.\n▪ Discuss various mathematical models for control systems.\n▪ Importance of controllers in control systems.\n▪ Stability..."
+              }
+            ],
+            "answer": "A decision tree makes split decisions by evaluating the features of the data at each node and choosing the best feature and split point that maximizes the homogeneity of the resulting subsets, or minimizes the impurity. The process involves the following steps:\n\n1. **Feature Selection**: At each node of the tree, the algorithm evaluates which feature (out of the available features) to use for splitting the data. This is often done using an impurity measure like Gini impurity or entropy (information gain) for classification tasks, or variance reduction for regression tasks.\n\n2. **Split Point Determination**: Once the feature is selected, the algorithm determines the best split point along that feature. For discrete features, this might be one of the feature's values. For continuous features, the algorithm will find the threshold value that best separates the data into two groups.\n\n   - **For classification tasks**: The split point is chosen to maximize the information gain or minimize the Gini impurity after the split. This results in the child nodes being as 'pure' as possible, meaning that the instances in each child node are predominantly of a single class.\n   \n   - **For regression tasks**: The split is chosen to minimize the variance of the target variable in the child nodes, leading to more homogenous subsets.\n\n3. **Stopping Criteria**: The decision tree algorithm also includes stopping criteria to prevent the tree from growing too large. This can be a maximum depth of the tree, a minimum number of instances required to be at a leaf node, or a threshold for the improvement in impurity.\n\n4. **Recursive Splitting**: The process is recursively applied to the subsets of the data created by each split, creating new nodes and branches, until the stopping criteria are met.\n\nThe result is a tree structure where each internal node represents a feature on which a decision is made, each branch represents a possible outcome of that decision, and each leaf node represents a class label or a value in the case of regression.\n\nThe decision-making process in a decision tree is intuitive and easy to interpret, making decision trees a popular choice for tasks where model interpretability is important. However, they can be prone to overfitting, especially if the tree is allowed to grow too deep, and they may not handle noise or irrelevant features well."
+          }
+        },
+        {
+          "name": "Enhanced Parse + Enhanced RAG",
+          "result": {
+            "method": "Enhanced RAG (RRF + Rerank)",
+            "top_scores": [
+              "0.5770",
+              "0.3486",
+              "0.2598",
+              "0.2187",
+              "0.1678"
+            ],
+            "retrieved_chunks": [
+              {
+                "chunk_id": "table_80_0",
+                "source_type": "table",
+                "content": "| 0             | 1                                                                     |\n|:--------------|:----------------------------------------------------------------------|\n| Decision Tree |   ..."
+              },
+              {
+                "chunk_id": "text_fixed_256_19456",
+                "source_type": "text_fixed_256",
+                "content": "ion Tree and Random Forest\n\nDecision Tree\n▪ Graphical representation of all the possible solutions to a decision.\n▪ Decisions are based on some conditions.\n▪ Decisions made can be easily explained.\nSh..."
+              },
+              {
+                "chunk_id": "text_fixed_256_20736",
+                "source_type": "text_fixed_256",
+                "content": "ze the dataset\n\n[Reference: This section contains structured data in: table_85_0]\n\n\n\nImplementation of Decision Tree\nStep-4: Split the dataset into Training and Testing Set\nStep-5: Train Decision Tree..."
+              },
+              {
+                "chunk_id": "text_fixed_512_19456",
+                "source_type": "text_fixed_512",
+                "content": "ion Tree and Random Forest\n\nDecision Tree\n▪ Graphical representation of all the possible solutions to a decision.\n▪ Decisions are based on some conditions.\n▪ Decisions made can be easily explained.\nSh..."
+              },
+              {
+                "chunk_id": "text_fixed_1024_19456",
+                "source_type": "text_fixed_1024",
+                "content": "ion Tree and Random Forest\n\nDecision Tree\n▪ Graphical representation of all the possible solutions to a decision.\n▪ Decisions are based on some conditions.\n▪ Decisions made can be easily explained.\nSh..."
+              }
+            ],
+            "answer": "A decision tree makes split decisions by evaluating the features in the dataset and determining the best place to divide the data based on those features. This process is iterative and happens at each node of the tree. Here's how it generally works:\n\n1. **Choosing the Best Split**: At each node of the tree, the algorithm looks at all possible ways to split the data based on the features available. It uses an impurity measure (like Gini impurity for classification or variance reduction for regression) to evaluate the quality of each split. The split that results in the most significant reduction in impurity is chosen.\n\n2. **Impurity Measures**: For classification problems, common impurity measures are Gini impurity and entropy. Gini impurity measures the likelihood of a random chosen element being misclassified. Entropy is a measure of the uncertainty in the set (the higher the entropy, the more mixed the data is).\n\n   For regression problems, variance reduction is often used as the impurity measure. The goal is to find splits that reduce the variance of the values in the child nodes.\n\n3. **Stopping Criteria**: The algorithm has certain stopping criteria to prevent the tree from growing too large and overfitting the data. These can include:\n   - A maximum depth of the tree.\n   - A minimum number of samples required at a leaf node.\n   - A minimum reduction in impurity required for a split to be made.\n\n4. **Feature Consideration**: Decision trees can handle both categorical and numerical features. For categorical features, the algorithm will look at each possible category to split on. For numerical features, the algorithm will look for the best cut-off point to split the data.\n\n5. **Recursive Partitioning**: This process of splitting the data is applied recursively to each child node until the stopping criteria are met.\n\nIn summary, decision trees make split decisions by finding the best feature and value to split the data at each node, which results in the purest subsets of the data. This binary splitting process is repeated down the tree until a termination condition is met, resulting in a hierarchical tree structure that can be used for making predictions."
+          }
+        }
+      ]
+    }
+  ]
+}

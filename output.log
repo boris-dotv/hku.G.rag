@@ -1,189 +1,0 @@
-INFO 04-13 18:15:45 __init__.py:190] Automatically detected platform cuda.
-/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/bm25_retriever.py:5: LangChainDeprecationWarning: Importing BM25Retriever from langchain.retrievers is deprecated. Please replace deprecated imports:
-
->> from langchain.retrievers import BM25Retriever
-
-with new imports of:
-
->> from langchain_community.retrievers import BM25Retriever
-You can use the langchain cli to **automatically** upgrade many imports. Please see documentation here <https://python.langchain.com/docs/versions/v0_2/>
-  from langchain.retrievers import BM25Retriever
-/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/faiss_retriever.py:6: LangChainDeprecationWarning: Importing FAISS from langchain.vectorstores is deprecated. Please replace deprecated imports:
-
->> from langchain.vectorstores import FAISS
-
-with new imports of:
-
->> from langchain_community.vectorstores import FAISS
-You can use the langchain cli to **automatically** upgrade many imports. Please see documentation here <https://python.langchain.com/docs/versions/v0_2/>
-  from langchain.vectorstores import FAISS
-/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/faiss_retriever.py:7: LangChainDeprecationWarning: Importing HuggingFaceEmbeddings from langchain.embeddings is deprecated. Please replace deprecated imports:
-
->> from langchain.embeddings import HuggingFaceEmbeddings
-
-with new imports of:
-
->> from langchain_community.embeddings import HuggingFaceEmbeddings
-You can use the langchain cli to **automatically** upgrade many imports. Please see documentation here <https://python.langchain.com/docs/versions/v0_2/>
-  from langchain.embeddings.huggingface import HuggingFaceEmbeddings
-/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/faiss_retriever.py:15: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-huggingface package and should be used instead. To use it run `pip install -U :class:`~langchain-huggingface` and import as `from :class:`~langchain_huggingface import HuggingFaceEmbeddings``.
-  self.embeddings = HuggingFaceEmbeddings(
-No sentence-transformers model found with name /root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/m3e-large. Creating a new one with mean pooling.
-Building prefix dict from the default dictionary ...
-Loading model from cache /tmp/jieba.cache
-Loading model cost 0.558 seconds.
-Prefix dict has been built successfully.
-
-page_14_header:  Example 
-
-
-page_20_header:  Random 
-
-
-page_30_header:  Applications 
-
-
-page_514_header:  Masking 
-
-
-page_14_header:  Example 
-
-
-page_20_header:  Random 
-
-
-page_30_header:  Applications 
-
-
-page_514_header:  Masking 
-
-
-page_14_content:  Example of Deep Learning 
-▪Sides = 4
-▪Closed
-▪Perpendicular
-▪Equal sizes
-Well, it is nothing but a nested hierarchy of basic concepts. 
-
-
-page_20_content:  Random Splitting of the Dataset  
-Another method is too pick rows at random .
-▪ Sci-kit learn has a built -in method
-DATAfrom sklearn.cross_validation  import  train_test_split
-ncols  = dataset.shape [ 1 ] # property shape[ 0 ] is the number of  columns
-X = dataset.iloc[ :, :-1]
-y = dataset.iloc[ :, ncols ]# X is all the features (exclude last column)  
-# Y is the label (last column)
-# Split the data, with 80% train and 20% test
-X_train, X_test, y_train, y_test = train_test_split (X, y, test_size = 0.2, random_state =0)
-split sizeseed for random  
-Number generator# Assume label is the last column in the dataset 
-
-
-page_30_content:  Applications of supervised Learning
-Risk Evaluation  
-Forecast  Sales 
-
-
-page_514_content:  Masking
-▪Another use of Boolean arrays isthat they 
-can be used to select a subset of
-elements. Itiscalled masking .
-▪Itcanalso beused toassign anew value .
-Forexample, thefollowing zeroes outthe
-negative numbers .
- 
-
-
-page_14_content:  Example of Deep Learning 
-▪Sides = 4
-▪Closed
-▪Perpendicular
-▪Equal sizes
-Well, it is nothing but a nested hierarchy of basic concepts. 
-
-
-page_20_content:  Random Splitting of the Dataset  
-Another method is too pick rows at random .
-▪ Sci-kit learn has a built -in method
-DATAfrom sklearn.cross_validation  import  train_test_split
-ncols  = dataset.shape [ 1 ] # property shape[ 0 ] is the number of  columns
-X = dataset.iloc[ :, :-1]
-y = dataset.iloc[ :, ncols ]# X is all the features (exclude last column)  
-# Y is the label (last column)
-# Split the data, with 80% train and 20% test
-X_train, X_test, y_train, y_test = train_test_split (X, y, test_size = 0.2, random_state =0)
-split sizeseed for random  
-Number generator# Assume label is the last column in the dataset 
-
-
-page_30_content:  Applications of supervised Learning
-Risk Evaluation  
-Forecast  Sales 
-
-
-page_514_content:  Masking
-▪Another use of Boolean arrays isthat they 
-can be used to select a subset of
-elements. Itiscalled masking .
-▪Itcanalso beused toassign anew value .
-Forexample, thefollowing zeroes outthe
-negative numbers .
- 
-
-
-Parsing and loading of PDF data is complete.
-
-
-faissretriever load ok
-
-
-bm25 load ok
-
-INFO 04-13 18:17:53 config.py:2382] Downcasting torch.float32 to torch.bfloat16.
-INFO 04-13 18:18:00 config.py:542] This model supports multiple tasks: {'reward', 'score', 'generate', 'embed', 'classify'}. Defaulting to 'generate'.
-INFO 04-13 18:18:00 llm_engine.py:234] Initializing a V0 LLM engine (v0.7.2) with config: model='/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/Qwen-7B-Chat', speculative_config=None, tokenizer='/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/Qwen-7B-Chat', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/Qwen-7B-Chat, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":[],"compile_sizes":[],"cudagraph_capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False, 
-WARNING 04-13 18:18:00 tokenizer.py:221] Using a slow tokenizer. This might cause a significant slowdown. Consider using a fast tokenizer instead.
-INFO 04-13 18:18:01 cuda.py:230] Using Flash Attention backend.
-INFO 04-13 18:18:02 model_runner.py:1110] Starting to load model /root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/Qwen-7B-Chat...
-Loading safetensors checkpoint shards:   0% Completed | 0/8 [00:00<?, ?it/s]
-Loading safetensors checkpoint shards:  12% Completed | 1/8 [00:00<00:01,  5.38it/s]
-Loading safetensors checkpoint shards:  25% Completed | 2/8 [00:00<00:01,  4.70it/s]
-Loading safetensors checkpoint shards:  38% Completed | 3/8 [00:00<00:01,  4.62it/s]
-Loading safetensors checkpoint shards:  50% Completed | 4/8 [00:00<00:00,  4.58it/s]
-Loading safetensors checkpoint shards:  62% Completed | 5/8 [00:01<00:00,  4.53it/s]
-Loading safetensors checkpoint shards:  75% Completed | 6/8 [00:01<00:00,  4.53it/s]
-Loading safetensors checkpoint shards:  88% Completed | 7/8 [00:01<00:00,  4.53it/s]
-Loading safetensors checkpoint shards: 100% Completed | 8/8 [00:01<00:00,  4.96it/s]
-Loading safetensors checkpoint shards: 100% Completed | 8/8 [00:01<00:00,  4.74it/s]
-
-INFO 04-13 18:18:04 model_runner.py:1115] Loading model weights took 14.3919 GB
-WARNING 04-13 18:18:04 tokenizer.py:221] Using a slow tokenizer. This might cause a significant slowdown. Consider using a fast tokenizer instead.
-INFO 04-13 18:18:07 worker.py:267] Memory profiling takes 2.65 seconds
-INFO 04-13 18:18:07 worker.py:267] the current vLLM instance can use total_gpu_memory (31.60GiB) x gpu_memory_utilization (0.90) = 28.44GiB
-INFO 04-13 18:18:07 worker.py:267] model weights take 14.39GiB; non_torch_memory takes 0.01GiB; PyTorch activation peak memory takes 0.75GiB; the rest of the memory reserved for KV Cache is 13.29GiB.
-INFO 04-13 18:18:07 executor_base.py:110] # CUDA blocks: 1700, # CPU blocks: 512
-INFO 04-13 18:18:07 executor_base.py:115] Maximum concurrency for 8192 tokens per request: 3.32x
-INFO 04-13 18:18:08 model_runner.py:1434] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
-Capturing CUDA graph shapes:   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graph shapes:   3%|▎         | 1/35 [00:00<00:25,  1.35it/s]Capturing CUDA graph shapes:   6%|▌         | 2/35 [00:01<00:24,  1.37it/s]Capturing CUDA graph shapes:   9%|▊         | 3/35 [00:02<00:23,  1.37it/s]Capturing CUDA graph shapes:  11%|█▏        | 4/35 [00:02<00:22,  1.37it/s]Capturing CUDA graph shapes:  14%|█▍        | 5/35 [00:03<00:21,  1.38it/s]Capturing CUDA graph shapes:  17%|█▋        | 6/35 [00:04<00:20,  1.39it/s]Capturing CUDA graph shapes:  20%|██        | 7/35 [00:05<00:20,  1.39it/s]Capturing CUDA graph shapes:  23%|██▎       | 8/35 [00:05<00:19,  1.40it/s]Capturing CUDA graph shapes:  26%|██▌       | 9/35 [00:06<00:18,  1.41it/s]Capturing CUDA graph shapes:  29%|██▊       | 10/35 [00:07<00:17,  1.41it/s]Capturing CUDA graph shapes:  31%|███▏      | 11/35 [00:07<00:16,  1.42it/s]Capturing CUDA graph shapes:  34%|███▍      | 12/35 [00:08<00:16,  1.42it/s]Capturing CUDA graph shapes:  37%|███▋      | 13/35 [00:09<00:15,  1.42it/s]Capturing CUDA graph shapes:  40%|████      | 14/35 [00:09<00:14,  1.42it/s]Capturing CUDA graph shapes:  43%|████▎     | 15/35 [00:10<00:14,  1.42it/s]Capturing CUDA graph shapes:  46%|████▌     | 16/35 [00:11<00:13,  1.41it/s]Capturing CUDA graph shapes:  49%|████▊     | 17/35 [00:12<00:12,  1.42it/s]Capturing CUDA graph shapes:  51%|█████▏    | 18/35 [00:12<00:11,  1.43it/s]Capturing CUDA graph shapes:  54%|█████▍    | 19/35 [00:13<00:11,  1.43it/s]Capturing CUDA graph shapes:  57%|█████▋    | 20/35 [00:14<00:10,  1.44it/s]Capturing CUDA graph shapes:  60%|██████    | 21/35 [00:14<00:09,  1.46it/s]Capturing CUDA graph shapes:  63%|██████▎   | 22/35 [00:15<00:08,  1.46it/s]Capturing CUDA graph shapes:  66%|██████▌   | 23/35 [00:16<00:08,  1.47it/s]Capturing CUDA graph shapes:  69%|██████▊   | 24/35 [00:16<00:07,  1.47it/s]Capturing CUDA graph shapes:  71%|███████▏  | 25/35 [00:17<00:06,  1.47it/s]Capturing CUDA graph shapes:  74%|███████▍  | 26/35 [00:18<00:06,  1.47it/s]Capturing CUDA graph shapes:  77%|███████▋  | 27/35 [00:18<00:05,  1.47it/s]Capturing CUDA graph shapes:  80%|████████  | 28/35 [00:19<00:04,  1.47it/s]Capturing CUDA graph shapes:  83%|████████▎ | 29/35 [00:20<00:04,  1.48it/s]Capturing CUDA graph shapes:  86%|████████▌ | 30/35 [00:20<00:03,  1.48it/s]Capturing CUDA graph shapes:  89%|████████▊ | 31/35 [00:21<00:02,  1.49it/s]Capturing CUDA graph shapes:  91%|█████████▏| 32/35 [00:22<00:02,  1.50it/s]Capturing CUDA graph shapes:  94%|█████████▍| 33/35 [00:22<00:01,  1.51it/s]Capturing CUDA graph shapes:  97%|█████████▋| 34/35 [00:23<00:00,  1.51it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:24<00:00,  1.52it/s]Capturing CUDA graph shapes: 100%|██████████| 35/35 [00:24<00:00,  1.45it/s]
-INFO 04-13 18:18:32 model_runner.py:1562] Graph capturing finished in 24 secs, took 0.24 GiB
-INFO 04-13 18:18:32 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 28.50 seconds
-/root/autodl-tmp/.v_scratchs/llm/15_lynk_RAG_proj/bm25_retriever.py:40: LangChainDeprecationWarning: The method `BaseRetriever.get_relevant_documents` was deprecated in langchain-core 0.1.46 and will be removed in 1.0. Use :meth:`~invoke` instead.
-  ans_docs = self.retriever.get_relevant_documents(query)
-
-llm qwen load ok
-
-
-rerank model load ok
-
-
-Total number of questions: 4
-
-Processed prompts:   0%|          | 0/4 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:  25%|██▌       | 1/4 [00:00<00:01,  1.90it/s, est. speed input: 521.73 toks/s, output: 7.59 toks/s]Processed prompts:  50%|█████     | 2/4 [00:02<00:02,  1.39s/it, est. speed input: 457.52 toks/s, output: 34.04 toks/s]Processed prompts:  75%|███████▌  | 3/4 [00:02<00:00,  1.08it/s, est. speed input: 673.05 toks/s, output: 63.23 toks/s]Processed prompts: 100%|██████████| 4/4 [00:03<00:00,  1.36it/s, est. speed input: 906.87 toks/s, output: 89.52 toks/s]Processed prompts: 100%|██████████| 4/4 [00:03<00:00,  1.20it/s, est. speed input: 906.87 toks/s, output: 89.52 toks/s]
-Processed prompts:   0%|          | 0/4 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:  25%|██▌       | 1/4 [00:01<00:05,  1.84s/it, est. speed input: 150.50 toks/s, output: 30.42 toks/s]Processed prompts:  50%|█████     | 2/4 [00:02<00:02,  1.04s/it, est. speed input: 336.31 toks/s, output: 56.34 toks/s]Processed prompts:  75%|███████▌  | 3/4 [00:02<00:00,  1.47it/s, est. speed input: 752.75 toks/s, output: 84.03 toks/s]Processed prompts: 100%|██████████| 4/4 [00:03<00:00,  1.17it/s, est. speed input: 759.34 toks/s, output: 94.65 toks/s]Processed prompts: 100%|██████████| 4/4 [00:03<00:00,  1.08it/s, est. speed input: 759.34 toks/s, output: 94.65 toks/s]
-Processed prompts:   0%|          | 0/4 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:  25%|██▌       | 1/4 [00:01<00:03,  1.28s/it, est. speed input: 682.60 toks/s, output: 24.16 toks/s]Processed prompts:  75%|███████▌  | 3/4 [00:01<00:00,  2.10it/s, est. speed input: 1338.70 toks/s, output: 65.26 toks/s]Processed prompts: 100%|██████████| 4/4 [00:01<00:00,  2.50it/s, est. speed input: 1742.86 toks/s, output: 86.60 toks/s]Processed prompts: 100%|██████████| 4/4 [00:01<00:00,  2.07it/s, est. speed input: 1742.86 toks/s, output: 86.60 toks/s]
-Processed prompts:   0%|          | 0/4 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:  25%|██▌       | 1/4 [00:00<00:00,  5.39it/s, est. speed input: 830.13 toks/s, output: 21.56 toks/s]Processed prompts:  75%|███████▌  | 3/4 [00:01<00:00,  1.54it/s, est. speed input: 256.63 toks/s, output: 45.35 toks/s]Processed prompts: 100%|██████████| 4/4 [00:02<00:00,  1.96it/s, est. speed input: 298.68 toks/s, output: 81.10 toks/s]Processed prompts: 100%|██████████| 4/4 [00:02<00:00,  1.94it/s, est. speed input: 298.68 toks/s, output: 81.10 toks/s]
-
-Cost time of inference: 11.9383 seconds.
-
-[rank0]:[W413 18:18:46.874873422 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
