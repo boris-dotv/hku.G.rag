@@ -9,7 +9,10 @@ v2/venv/*
 
 text2vec-base-multilingual/*
 bge-reranker-large/*
-data/*
+# data/ is now tracked, but exclude large files
+data/parsed/baseline_chunks.json
+data/testset/*.json
+data/reranker_data/*.jsonl
 
 embedding_evaluation/gte-Qwen2-1.5B-instruct/*
 embedding_evaluation/env/*

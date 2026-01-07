@@ -1,0 +1,752 @@
+{
+  "enhanced": {
+    "parser_name": "data/parsed/enhanced_chunks.json",
+    "total_chunks": 259,
+    "concepts": [
+      {
+        "concept": "Machine Learning vs Deep Learning",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Types of Machine Learning",
+        "matching_chunks": [
+          {
+            "chunk_idx": 11,
+            "chunk_id": "window_11_473278a3",
+            "pages": [
+              30,
+              31,
+              32
+            ],
+            "content": "Applications of supervised Learning\nForecast Sales\nRisk Evaluation\n\nPopular Algorithms in Supervised Machine Learning\nAlgorithm 2 Algorithm 4 Algorithm 6\n• Linear • Decision • Naïve • Support\nRegressi"
+          },
+          {
+            "chunk_idx": 13,
+            "chunk_id": "window_13_6f0a2244",
+            "pages": [
+              34,
+              35,
+              36
+            ],
+            "content": "Popular Algorithms in Unsupervised Machine Learning\nAlgorithm 2\n• K-Means • C-Means\n• Apriori\nAlgorithm 1 Algorithm 3\n\nReinforcement Learning\n▪ In Reinforcement learning an agent\ninteracts with its en"
+          },
+          {
+            "chunk_idx": 14,
+            "chunk_id": "window_14_da39630e",
+            "pages": [
+              36,
+              37,
+              38
+            ],
+            "content": "Applications of Reinforcement Learning\nGaming\nSelf driving cars\n\nPopular Algorithms in Reinforcement Machine Learning\nAlgorithm 2\n• Q-Learning\n• SARSA\nAlgorithm 1\n\nMachine\nLearning\nSupervised Unsuperv"
+          },
+          {
+            "chunk_idx": 15,
+            "chunk_id": "window_15_e8751237",
+            "pages": [
+              38,
+              40,
+              41
+            ],
+            "content": "Machine\nLearning\nSupervised Unsupervised Reinforcement\nLearning Learning Learning\nDimensionality Real time\nClassification Regression Clustering\nReduction decisions\nAdvertising\nImage Big Data Recommend"
+          }
+        ],
+        "num_chunks": 4,
+        "completeness": 0.6
+      },
+      {
+        "concept": "Overfitting Definition and Signs",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Overfitting Solutions",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Decision Trees",
+        "matching_chunks": [
+          {
+            "chunk_idx": 30,
+            "chunk_id": "window_30_d55f7d4b",
+            "pages": [
+              78,
+              80,
+              81
+            ],
+            "content": "Confusion Matrix Metrics\nWhat does F1 Score?\nF1-score is a metric which takes into account\nboth precision and recall and is defined as follows\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 × 𝑅𝑒𝑐𝑎𝑙𝑙\n𝐹1 𝑆𝑐𝑜𝑟𝑒 = 2 ×\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 + 𝑅𝑒𝑐𝑎𝑙𝑙\nF1 S"
+          },
+          {
+            "chunk_idx": 31,
+            "chunk_id": "window_31_ee6c4cf4",
+            "pages": [
+              81,
+              82,
+              83
+            ],
+            "content": "Random Forest\n▪ Builds multiple decision trees and merges them together.\n▪ More accurate and stable prediction.\n▪ Random decision forests correct for decision trees’ habit of overfitting to their trai"
+          }
+        ],
+        "num_chunks": 2,
+        "completeness": 0.9
+      },
+      {
+        "concept": "Random Forest",
+        "matching_chunks": [
+          {
+            "chunk_idx": 30,
+            "chunk_id": "window_30_d55f7d4b",
+            "pages": [
+              78,
+              80,
+              81
+            ],
+            "content": "Confusion Matrix Metrics\nWhat does F1 Score?\nF1-score is a metric which takes into account\nboth precision and recall and is defined as follows\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 × 𝑅𝑒𝑐𝑎𝑙𝑙\n𝐹1 𝑆𝑐𝑜𝑟𝑒 = 2 ×\n𝑃𝑟𝑒𝑐𝑖𝑠𝑖𝑜𝑛 + 𝑅𝑒𝑐𝑎𝑙𝑙\nF1 S"
+          },
+          {
+            "chunk_idx": 31,
+            "chunk_id": "window_31_ee6c4cf4",
+            "pages": [
+              81,
+              82,
+              83
+            ],
+            "content": "Random Forest\n▪ Builds multiple decision trees and merges them together.\n▪ More accurate and stable prediction.\n▪ Random decision forests correct for decision trees’ habit of overfitting to their trai"
+          }
+        ],
+        "num_chunks": 2,
+        "completeness": 0.9
+      },
+      {
+        "concept": "Training vs Test Data",
+        "matching_chunks": [
+          {
+            "chunk_idx": 5,
+            "chunk_id": "window_5_817416aa",
+            "pages": [
+              14,
+              16,
+              17
+            ],
+            "content": "Example of Deep Learning\n▪ Sides = 4\n▪ Closed\n▪ Perpendicular\n▪ Equal sizes\nWell, it is nothing but a nested hierarchy of basic concepts.\n\nDeep Learning Vs Machine Learning\nis\nDeep learning a machine "
+          },
+          {
+            "chunk_idx": 6,
+            "chunk_id": "window_6_8ba43be2",
+            "pages": [
+              17,
+              18,
+              19
+            ],
+            "content": "Splitting Datasets\n▪ To use a dataset in Machine Learning, the dataset is split into a training and test set.\n▪ The training set is used to train the model.\n▪ The test set is used to test the accuracy"
+          },
+          {
+            "chunk_idx": 7,
+            "chunk_id": "window_7_c0c455c0",
+            "pages": [
+              19,
+              20,
+              21
+            ],
+            "content": "Serial Splitting of the Dataset\nThe simplest method of splitting data is to split it serially.\n▪Take the first 80% rows and put them into the training set.\n▪Take the remaining 20% rows and put them in"
+          },
+          {
+            "chunk_idx": 8,
+            "chunk_id": "window_8_58a5ff71",
+            "pages": [
+              21,
+              22,
+              23
+            ],
+            "content": "Data Imbalance-Overfitting\n▪ If the training data is overly unbalanced, then the model will predict a non-\nmeaningful result.\n▪ For example, if the model is a binary classifier (e.g., apple vs. pear),"
+          },
+          {
+            "chunk_idx": 9,
+            "chunk_id": "window_9_7b9128ca",
+            "pages": [
+              23,
+              24,
+              26
+            ],
+            "content": "Cross Validation\nSplit Dataset into Training and Test Randomly picksplit Use Training Data to Train the Model\nTrain\nTraining\nData\nTraining\nData\nDATA\nValidation Model\nData\nTest Use Validation Data\nAccu"
+          },
+          {
+            "chunk_idx": 22,
+            "chunk_id": "window_22_1ffb4875",
+            "pages": [
+              59,
+              60,
+              63
+            ],
+            "content": "Application of Linear Regression\n▪ Evaluating Trends and Sales Estimates.\n▪ Analyzing the Impact of Price Changes.\n▪ Assessment of risk in financial services and insurance domain.\n\nImplementation of L"
+          },
+          {
+            "chunk_idx": 23,
+            "chunk_id": "window_23_42df9886",
+            "pages": [
+              63,
+              65,
+              66
+            ],
+            "content": "Implementation of Linear Regression\nSplit the dataset into training and test dataset using sklearn\n\nImplementation of Linear Regression\nσ𝑁\n𝑦 − 𝑦\n𝑖=1 𝑡𝑒𝑠𝑡𝑖 𝑝𝑟𝑒𝑑\n𝑖\n𝑀𝐴𝐸 =\n𝑁\n2\nσ𝑁\n𝑦 − 𝑦\n𝑖=1 𝑡𝑒𝑠𝑡𝑖 𝑝𝑟𝑒𝑑\n𝑖\n𝑀𝑆"
+          },
+          {
+            "chunk_idx": 26,
+            "chunk_id": "window_26_6dac998c",
+            "pages": [
+              70,
+              71,
+              72
+            ],
+            "content": "Implementation of Logistic Regression\nStep-1: Load the relevant libraries\nStep-2: Import the dataset and extract the independent and dependent variables\n\nImplementation of Logistic Regression\nStep-3: "
+          },
+          {
+            "chunk_idx": 27,
+            "chunk_id": "window_27_2bcd451a",
+            "pages": [
+              72,
+              73,
+              74
+            ],
+            "content": "Implementation of Logistic Regression\nStep-4: Split the dataset into Training and Testing Set\nStep-5: Feature Scaling\nFeature scaling is a method used to normalize the range of independent variables o"
+          },
+          {
+            "chunk_idx": 33,
+            "chunk_id": "window_33_ae7872ae",
+            "pages": [
+              85,
+              86,
+              87
+            ],
+            "content": "Implementation of Decision Tree\nStep-3: Visualize the dataset\n\nImplementation of Decision Tree\nStep-4: Split the dataset into Training and Testing Set\nStep-5: Train Decision Tree\n\nImplementation of De"
+          },
+          {
+            "chunk_idx": 42,
+            "chunk_id": "window_42_55e3c557",
+            "pages": [
+              107,
+              108,
+              109
+            ],
+            "content": "Implementation of KNN Algorithm\nStep-3: Visualize the dataset\n\nImplementation of KNN Algorithm\nStep-4: Split the dataset into Training and Testing Set\nStep-5: Feature Scaling\n\nImplementation of KNN Al"
+          }
+        ],
+        "num_chunks": 11,
+        "completeness": 0.3
+      },
+      {
+        "concept": "Regression Analysis",
+        "matching_chunks": [
+          {
+            "chunk_idx": 17,
+            "chunk_id": "window_17_5254c100",
+            "pages": [
+              46,
+              47,
+              51
+            ],
+            "content": "https://scikit-learn.org/stable/\nhttps://scikit-learn.org/stable/\n\nhttps://scikit-learn.org/stable/\nhttps://scikit-learn.org/stable/\n\nRegression\n▪ Regression Analysis is a predictive modeling techniqu"
+          },
+          {
+            "chunk_idx": 18,
+            "chunk_id": "window_18_08f6b64f",
+            "pages": [
+              51,
+              52,
+              53
+            ],
+            "content": "Regression\n▪ Regression Analysis is a predictive modeling technique.\n▪ It estimates the relationship between a dependent (target) and an independent variable\n(predictor).\nUses of Regression\nThree majo"
+          }
+        ],
+        "num_chunks": 2,
+        "completeness": 0.9
+      },
+      {
+        "concept": "Supervised Algorithms",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Data Imbalance",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Support Vector Machines",
+        "matching_chunks": [
+          {
+            "chunk_idx": 43,
+            "chunk_id": "window_43_960e193c",
+            "pages": [
+              109,
+              110,
+              112
+            ],
+            "content": "Implementation of KNN Algorithm\nStep-6: Fit KNN model to Train dataset:\nStep-7: Predicting the Test set results\n\nImplementation of KNN Algorithm\nStep-8: Display the confusion matrix:\nAccuracy:\n𝑇𝑃+𝑇𝑁 6"
+          },
+          {
+            "chunk_idx": 44,
+            "chunk_id": "window_44_23fc1828",
+            "pages": [
+              112,
+              113,
+              114
+            ],
+            "content": "What is SVM\n▪ Support Vector Machine (SVM) is a discriminative classifier that is formally\ndesigned by a separative hyperplane.\n▪ Useful for solving both classification and regression-type problems.\n▪"
+          }
+        ],
+        "num_chunks": 2,
+        "completeness": 0.9
+      },
+      {
+        "concept": "Naive Bayes",
+        "matching_chunks": [
+          {
+            "chunk_idx": 35,
+            "chunk_id": "window_35_020e50aa",
+            "pages": [
+              90,
+              91,
+              92
+            ],
+            "content": "What is Naïve Bayes\nNaïve Bayes is a simple but surprisingly powerful algorithm for predictive\nmodeling. It is a classification technique based on the Bayes theorem.\n\nWhat is Naïve Bayes\nNaïve Bayes i"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "K-Nearest Neighbors",
+        "matching_chunks": [
+          {
+            "chunk_idx": 40,
+            "chunk_id": "window_40_1daae98d",
+            "pages": [
+              103,
+              104,
+              105
+            ],
+            "content": "K Nearest Neighbors\n▪ KNN is a classification algorithm generally used to predict categorical values.\n▪ It stores all the available cases and classifies new cases based on a similarity measure.\nTo fin"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "Cross-Validation",
+        "matching_chunks": [
+          {
+            "chunk_idx": 9,
+            "chunk_id": "window_9_7b9128ca",
+            "pages": [
+              23,
+              24,
+              26
+            ],
+            "content": "Cross Validation\nSplit Dataset into Training and Test Randomly picksplit Use Training Data to Train the Model\nTrain\nTraining\nData\nTraining\nData\nDATA\nValidation Model\nData\nTest Use Validation Data\nAccu"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "Logistic Regression",
+        "matching_chunks": [
+          {
+            "chunk_idx": 7,
+            "chunk_id": "window_7_c0c455c0",
+            "pages": [
+              19,
+              20,
+              21
+            ],
+            "content": "Serial Splitting of the Dataset\nThe simplest method of splitting data is to split it serially.\n▪Take the first 80% rows and put them into the training set.\n▪Take the remaining 20% rows and put them in"
+          },
+          {
+            "chunk_idx": 8,
+            "chunk_id": "window_8_58a5ff71",
+            "pages": [
+              21,
+              22,
+              23
+            ],
+            "content": "Data Imbalance-Overfitting\n▪ If the training data is overly unbalanced, then the model will predict a non-\nmeaningful result.\n▪ For example, if the model is a binary classifier (e.g., apple vs. pear),"
+          },
+          {
+            "chunk_idx": 23,
+            "chunk_id": "window_23_42df9886",
+            "pages": [
+              63,
+              65,
+              66
+            ],
+            "content": "Implementation of Linear Regression\nSplit the dataset into training and test dataset using sklearn\n\nImplementation of Linear Regression\nσ𝑁\n𝑦 − 𝑦\n𝑖=1 𝑡𝑒𝑠𝑡𝑖 𝑝𝑟𝑒𝑑\n𝑖\n𝑀𝐴𝐸 =\n𝑁\n2\nσ𝑁\n𝑦 − 𝑦\n𝑖=1 𝑡𝑒𝑠𝑡𝑖 𝑝𝑟𝑒𝑑\n𝑖\n𝑀𝑆"
+          },
+          {
+            "chunk_idx": 24,
+            "chunk_id": "window_24_f1a6740f",
+            "pages": [
+              66,
+              67,
+              68
+            ],
+            "content": "Logistic Regression\nLogistic Regression is a classification algorithm that produces results in a binary format which is used\nto predict the outcome of a categorical dependent variable. So, the outcome"
+          },
+          {
+            "chunk_idx": 27,
+            "chunk_id": "window_27_2bcd451a",
+            "pages": [
+              72,
+              73,
+              74
+            ],
+            "content": "Implementation of Logistic Regression\nStep-4: Split the dataset into Training and Testing Set\nStep-5: Feature Scaling\nFeature scaling is a method used to normalize the range of independent variables o"
+          },
+          {
+            "chunk_idx": 28,
+            "chunk_id": "window_28_db6ce04c",
+            "pages": [
+              74,
+              75,
+              76
+            ],
+            "content": "Implementation of Logistic Regression\nStep-8: Display the confusion matrix:\nA confusion matrix, also known as an error matrix, is a specific table\nlayout that allows visualization of the performance o"
+          },
+          {
+            "chunk_idx": 35,
+            "chunk_id": "window_35_020e50aa",
+            "pages": [
+              90,
+              91,
+              92
+            ],
+            "content": "What is Naïve Bayes\nNaïve Bayes is a simple but surprisingly powerful algorithm for predictive\nmodeling. It is a classification technique based on the Bayes theorem.\n\nWhat is Naïve Bayes\nNaïve Bayes i"
+          },
+          {
+            "chunk_idx": 38,
+            "chunk_id": "window_38_8519a062",
+            "pages": [
+              97,
+              98,
+              99
+            ],
+            "content": "Classification Steps\nOur model predicts that\nthere is a 51% chance\n0.048\n𝑃 𝑌𝑒𝑠 = = 0.51 there will be a game\n(0.048 + 0.046)\ntomorrow.\n0.046\n𝑃 𝑁𝑜 = = 0.49\n(0.048 + 0.046)\n\nApplications of Naïve Base A"
+          },
+          {
+            "chunk_idx": 39,
+            "chunk_id": "window_39_5533132c",
+            "pages": [
+              99,
+              100,
+              103
+            ],
+            "content": "Types of Naïve Bayes\n1. Gaussian: It is used in classification and assumes that features follow a normal\ndistribution.\n2. Multinomial: It is used for discrete counts. For example, let’s say, we have a"
+          }
+        ],
+        "num_chunks": 9,
+        "completeness": 0.3
+      }
+    ],
+    "metrics": {
+      "concept_coverage": 0.6666666666666666,
+      "concept_completeness": 0.52,
+      "total_chunks": 259,
+      "avg_chunk_length": 857.1544401544402,
+      "cross_page_chunks": 258,
+      "short_chunks": 0,
+      "long_chunks": 3,
+      "overall_score": 0.7062625482625483
+    }
+  },
+  "baseline": {
+    "parser_name": "data/parsed/baseline_chunks.json",
+    "total_chunks": 555,
+    "concepts": [
+      {
+        "concept": "Machine Learning vs Deep Learning",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Types of Machine Learning",
+        "matching_chunks": [
+          {
+            "chunk_idx": 32,
+            "chunk_id": "baseline_page_37",
+            "pages": [
+              38
+            ],
+            "content": "Machine \nLearning\nSupervised\nLearning\nClassification\nImage \nClassification\nIdentity Fraud \ndetection\nCustomer \nRetention\nDiagnosticsRegression\nAdvertising \npopularity \nprediction\nWeather \nForecasting\n"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "Overfitting Definition and Signs",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Overfitting Solutions",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Decision Trees",
+        "matching_chunks": [
+          {
+            "chunk_idx": 73,
+            "chunk_id": "baseline_page_80",
+            "pages": [
+              81
+            ],
+            "content": "Random Forest\n▪Builds multiple decision trees and merges them together. \n▪More accurate and stable prediction .\n▪Random decision forests correct for decision trees’ habit of overfitting to their train"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "Random Forest",
+        "matching_chunks": [
+          {
+            "chunk_idx": 73,
+            "chunk_id": "baseline_page_80",
+            "pages": [
+              81
+            ],
+            "content": "Random Forest\n▪Builds multiple decision trees and merges them together. \n▪More accurate and stable prediction .\n▪Random decision forests correct for decision trees’ habit of overfitting to their train"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "Training vs Test Data",
+        "matching_chunks": [
+          {
+            "chunk_idx": 12,
+            "chunk_id": "baseline_page_16",
+            "pages": [
+              17
+            ],
+            "content": "Splitting Datasets\n▪ To use a dataset in Machine Learning, the dataset is split into a training and test set .\n▪ The training set is used to train the model .\n▪ The test set is used to test the accura"
+          },
+          {
+            "chunk_idx": 14,
+            "chunk_id": "baseline_page_18",
+            "pages": [
+              19
+            ],
+            "content": "Serial Splitting of the Dataset  \nThe simplest method of splitting data is to split it serially .\n▪Take the first 80% rows and put them into the training set . \n▪Take the remaining 20% rows and put th"
+          },
+          {
+            "chunk_idx": 15,
+            "chunk_id": "baseline_page_19",
+            "pages": [
+              20
+            ],
+            "content": "Random Splitting of the Dataset  \nAnother method is too pick rows at random .\n▪ Sci-kit learn has a built -in method\nDATAfrom sklearn.cross_validation  import  train_test_split\nncols  = dataset.shape "
+          },
+          {
+            "chunk_idx": 18,
+            "chunk_id": "baseline_page_22",
+            "pages": [
+              23
+            ],
+            "content": "Cross Validation\nDATATraining  \nData\nT est  \nData\nTrain\nModel\nAccuracySplit Dataset into Training  and T est Use Training Data to Train the Model\nTraining  \nData\nV alidation\nData\nPredict  \nAccuracyRan"
+          },
+          {
+            "chunk_idx": 55,
+            "chunk_id": "baseline_page_62",
+            "pages": [
+              63
+            ],
+            "content": "Implementation of Linear Regression\nSplit the dataset into training and test dataset using sklearn"
+          },
+          {
+            "chunk_idx": 64,
+            "chunk_id": "baseline_page_71",
+            "pages": [
+              72
+            ],
+            "content": "Implementation of Logistic Regression\nStep -4: Split the dataset into Training and Testing Set\nStep -5: Feature Scaling\nFeature  scaling  is a method  used  to normalize  the range  of independent  va"
+          },
+          {
+            "chunk_idx": 78,
+            "chunk_id": "baseline_page_85",
+            "pages": [
+              86
+            ],
+            "content": "Implementation of Decision Tree\nStep -4: Split the dataset into Training and Testing Set\nStep -5: Train Decision Tree"
+          },
+          {
+            "chunk_idx": 97,
+            "chunk_id": "baseline_page_107",
+            "pages": [
+              108
+            ],
+            "content": "Implementation of KNN Algorithm\nStep -4: Split the dataset into Training and Testing Set\nStep -5: Feature Scaling"
+          }
+        ],
+        "num_chunks": 8,
+        "completeness": 0.3
+      },
+      {
+        "concept": "Regression Analysis",
+        "matching_chunks": [
+          {
+            "chunk_idx": 43,
+            "chunk_id": "baseline_page_50",
+            "pages": [
+              51
+            ],
+            "content": "Regression\n▪Regression Analysis is a predictive modeling technique . \n▪It estimates the relation ship between a dependent (target) and an independent variable \n(predictor). \nThree major uses for regre"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "Supervised Algorithms",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Data Imbalance",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Support Vector Machines",
+        "matching_chunks": [
+          {
+            "chunk_idx": 100,
+            "chunk_id": "baseline_page_111",
+            "pages": [
+              112
+            ],
+            "content": "What is SVM\n▪Support  Vector  Machine  (SVM)  is a discriminative  classifier  that is formally  \ndesigned  by a separative  hyperplane . \n▪Useful  for solving  both  classification  and regression -t"
+          },
+          {
+            "chunk_idx": 101,
+            "chunk_id": "baseline_page_112",
+            "pages": [
+              113
+            ],
+            "content": "How does SVM Work?\nHyperplane\nSupport Vector\nMargin\nMarginal Distance\nMarginal Distance\nChoose  a hyperplane  that has the maximum  marginal  distance  . Linearly  Separable  data"
+          }
+        ],
+        "num_chunks": 2,
+        "completeness": 0.9
+      },
+      {
+        "concept": "Naive Bayes",
+        "matching_chunks": [
+          {
+            "chunk_idx": 82,
+            "chunk_id": "baseline_page_90",
+            "pages": [
+              91
+            ],
+            "content": "What is Naïve Bayes \nNaïve  Bayes  is a simple  but surprisingly  powerful  algorithm  for predictive  \nmodeling . It is a classification  technique  based  on the Bayes  theorem .\nGiven  a hypothesis"
+          }
+        ],
+        "num_chunks": 1,
+        "completeness": 1.0
+      },
+      {
+        "concept": "K-Nearest Neighbors",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Cross-Validation",
+        "matching_chunks": [],
+        "num_chunks": 0,
+        "completeness": 0.0
+      },
+      {
+        "concept": "Logistic Regression",
+        "matching_chunks": [
+          {
+            "chunk_idx": 16,
+            "chunk_id": "baseline_page_20",
+            "pages": [
+              21
+            ],
+            "content": "Data Imbalance -Overfitting\n▪ If the training  data  is overly  unbalanced , then  the model  will predict  a non-\nmeaningful  result . \n▪ For example,  if the model  is a binary  classifier  (e.g., a"
+          },
+          {
+            "chunk_idx": 58,
+            "chunk_id": "baseline_page_65",
+            "pages": [
+              66
+            ],
+            "content": "Logistic Regression\nLogistic Regression is a classification algorithm that produces results in a binary format which is used \nto predict the outcome of a categorical dependent variable . So, the outco"
+          },
+          {
+            "chunk_idx": 66,
+            "chunk_id": "baseline_page_73",
+            "pages": [
+              74
+            ],
+            "content": "Implementation of Logistic Regression\nStep -8: Display the confusion matrix:\nA confusion matrix , also known as an error matrix, is a specific table \nlayout that allows visualization of the performanc"
+          },
+          {
+            "chunk_idx": 82,
+            "chunk_id": "baseline_page_90",
+            "pages": [
+              91
+            ],
+            "content": "What is Naïve Bayes \nNaïve  Bayes  is a simple  but surprisingly  powerful  algorithm  for predictive  \nmodeling . It is a classification  technique  based  on the Bayes  theorem .\nGiven  a hypothesis"
+          },
+          {
+            "chunk_idx": 89,
+            "chunk_id": "baseline_page_98",
+            "pages": [
+              99
+            ],
+            "content": "Types of Naïve Bayes \n1.Gaussian : It is used  in classification  and assumes  that features  follow  a normal  \ndistribution .\n2.Multinomial : It is used  for discrete  counts . For example,  let’s s"
+          }
+        ],
+        "num_chunks": 5,
+        "completeness": 0.3
+      }
+    ],
+    "metrics": {
+      "concept_coverage": 0.5333333333333333,
+      "concept_completeness": 0.43333333333333335,
+      "total_chunks": 555,
+      "avg_chunk_length": 267.3333333333333,
+      "cross_page_chunks": 0,
+      "short_chunks": 100,
+      "long_chunks": 0,
+      "overall_score": 0.6063063063063063
+    }
+  },
+  "comparison": {
+    "improvement": {
+      "concept_coverage": 0.1333333333333333,
+      "concept_completeness": 0.08666666666666667,
+      "overall_score": 0.09995624195624198
+    },
+    "baseline_chunks": 555,
+    "enhanced_chunks": 259,
+    "chunk_reduction": 0.5333333333333333
+  }
+}
