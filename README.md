@@ -1,213 +1,94 @@
-# hku.G.RAG: Hong Kong University General-Purpose RAG System
+# HKU G.RAG: Production RAG Pipeline with Multi-Modal Parsing
 
-**An Agentic RAG Framework for Academic Courseware with Multi-Modal Parsing, Reranker Fine-tuning, and Hybrid Retrieval**
+**A lightweight, API-based RAG system for academic courseware with hybrid retrieval and comprehensive evaluation**
 
 <div align="center">
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.10+-3776AB.svg?logo=python&logoColor=white)](https://www.python.org/)
-[![Key Technologies](https://img.shields.io/badge/Tech-Qwen%20%7C%20FAISS%20%7C%20BM25-blueviolet)](https://github.com/QwenLM/Qwen)
 
 </div>
 
 ---
 
-## Abstract
+## Overview
 
-**hku.G.RAG** is a production-ready Retrieval-Augmented Generation system specifically designed for university courseware. Unlike generic RAG systems, it addresses the unique challenges of academic documents through:
+**HKU G.RAG** is a production-ready Retrieval-Augmented Generation system designed for university courseware. It combines multi-modal PDF parsing, hybrid retrieval (BM25 + Dense), and LLM-based evaluation using the Ragas framework.
 
-1. **Multi-Modal PDF Parsing**: Combines Camelot (tables), pdfplumber (visual layout), and ParseBlock (sliding window) to handle semi-structured course slides
-2. **Reranker Fine-tuning**: Automated pipeline generates training samples using GLM-4.7 API, fine-tuning Qwen3-Reranker-4B for nDCG improvement from 0.735 to 0.844
-3. **Hybrid Retrieval**: Adaptive BM25 + Qwen3-Embedding-8B dense retrieval with cross-encoder reranking via Baidu Qianfan API
-4. **Rigorous Benchmarking**: Three-stage evaluation covering parsing quality, reranker performance, and end-to-end accuracy
+### Key Features
 
-**Performance** (Measured on IDAT7215 Course Slides, 607 pages):
-- PDF Parsing: **+16.5%** improvement over baseline (0.706 vs 0.606)
-- Concept Coverage: **66.7% vs 53.3%** (+13.4%)
-- Cross-Page Chunks: **258 vs 0** (Enhanced captures cross-page concepts)
-- End-to-End Accuracy: **89.9%** (vs 68.6% baseline, +21.35%)
+- **Multi-Modal PDF Parsing**: Camelot (tables) + ParseBlock (sliding windows) + Code detection
+- **Hybrid Retrieval**: BM25 + Dense embedding with Reciprocal Rank Fusion (RRF)
+- **Reranker**: Qwen3-Reranker-8B via Baidu Qianfan API
+- **Vector Caching**: Hash-based persistence for fast restart
+- **Ragas Evaluation**: LLM-based metrics (Context Recall, Faithfulness, etc.)
+
+### Performance
+
+| Metric | Naive Parse | Enhanced Parse | Improvement |
+|--------|-------------|----------------|-------------|
+| Chunks | 555 | 1,956 | +252% |
+| Avg Chunk Length | 267 chars | 512+ chars | +92% |
+| Table Extraction | ❌ | ✅ (442 tables) | - |
+| Code Blocks | ❌ | ✅ (detected) | - |
+| Cross-Page Context | ❌ | ✅ (297 sliding windows) | - |
 
 ---
-
 
 ## Table of Contents
 
-- [Why Academic RAG is Different](#why-academic-rag-is-different)
-- [PDF Analysis & Parsing Strategy](#pdf-analysis--parsing-strategy)
-- [Key Features](#key-features)
+- [Architecture](#architecture)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Project Structure](#project-structure)
-- [Component Details](#component-details)
-- [Benchmarking](#benchmarking)
-- [Performance](#performance)
+- [Evaluation](#evaluation)
+- [API Reference](#api-reference)
+- [Configuration](#configuration)
 
 ---
 
-## Why Academic RAG is Different
+## Architecture
 
-Academic course slides present unique challenges that generic RAG systems fail to address:
-
-### 1. Semi-Structured Content
-
-Unlike web pages or plain text documents, course slides contain:
-- **Visual layouts**: Multiple columns, text boxes, overlapping elements
-- **Embedded tables**: Data tables that need structure preservation
-- **Sparse text**: Many pages are image-heavy with minimal extractable text
-- **Bullet-point hierarchy**: Information organized in outlines, not paragraphs
-
-### 2. Cross-Page Concepts
-
-A single concept often spans multiple slides:
-- Definition on page 4
-- Examples on page 5
-- Visual diagram on page 6
-- Applications on page 7
-
-Traditional per-page chunking severs these logical connections.
-
-### 3. Information Density
-
-Academic content is dense with:
-- Technical terminology (e.g., "Fama-French three-factor model")
-- Mathematical notation
-- Domain-specific abbreviations
-- Citation references
-
-Generic embedding models may not capture these nuances.
-
----
-
-## PDF Analysis & Parsing Strategy
-
-### Source Document Characteristics
-
-Our target PDF (IDAT7215 course slides, 607 pages) exhibits these properties:
-
-| Property | Value | Impact on Parsing |
-|----------|-------|-------------------|
-| Total Pages | 607 | Large document requiring efficient processing |
-| Text-Heavy Pages | 517 (~85%) | Most content is extractable |
-| Image-Only Pages | 90 (~15%) | Need to handle gracefully |
-| Avg Text/Page | 150-300 chars | Short, slide-focused content |
-| Structure | Outline + Content | Two-layer hierarchy |
-| Tables | ~15-20 | Need table extraction |
-
-### Challenges Observed
-
-1. **Inconsistent Text Extraction**: Some pages return empty strings due to being image-based
-2. **Outline Pages**: Pages containing only topic lists without explanatory content
-3. **Cross-Page Continuations**: Concepts started on one page and finished on another
-4. **Table Formats**: Tables stored as images rather than text in some cases
-
-### ParseBlock Design Rationale
-
-Traditional fixed-size chunking fails for course slides because:
-
-```python
-# Traditional approach (FAILS for slides)
-chunks = split_text(text, chunk_size=512, overlap=50)
-# Problem: Cuts bullets in half, separates examples from definitions
 ```
-
-**Our ParseBlock Solution**:
-
-1. **Section Boundary Detection**
-   ```python
-   # Detect where topics change by measuring content similarity
-   similarity = cosine_sim(page_i, page_i+1)
-   if similarity < threshold:
-       mark_section_boundary()
-   ```
-
-2. **Sliding Window with Overlap**
-   ```python
-   window_size = 3   # Capture related slides together
-   overlap = 1       # Maintain context continuity
-   # Result: [p1,p2,p3], [p3,p4,p5], [p5,p6,p7], ...
-   ```
-
-3. **Content-Type Awareness**
-   - Tables: Extract separately with Camelot (preserves Markdown structure)
-   - Outlines: Merge with following content
-   - Definitions: Keep with associated examples
-
-### Why This Design Works
-
-| Challenge | Traditional | ParseBlock |
-|-----------|-------------|------------|
-| Cross-page concepts | ❌ Split across chunks | ✅ Captured in sliding window |
-| Table structure | ❌ Lost | ✅ Preserved via Camelot |
-| Outline pages | ❌ Treated as content | ✅ Merged with explanations |
-| Image pages | ❌ Create empty chunks | ✅ Filtered out |
-
----
-
-## Key Features
-
-### 1. Multi-Modal PDF Parsing
-
-**Components**:
-- **Camelot**: Extracts tables with structure preserved (Markdown format)
-- **pdfplumber**: Captures visual layout and spatial information
-- **ParseBlock**: Sliding window (window=3, overlap=1) for cross-page concepts
-
-```bash
-# Parse PDF with enhanced parser
-python src/parser/pdf_parser.py slides/7215_slides.pdf \
-    --output data/parsed/enhanced_chunks.json \
-    --window-size 3 --overlap 1
-```
-
-**Output**:
-```json
-{
-  "content": "...",
-  "chunk_id": "window_0_abc123",
-  "source_type": "sliding_window",
-  "page_numbers": [1, 2, 4],
-  "metadata": {"num_pages": 3, "avg_page_length": 180}
-}
-```
-
-### 2. Reranker Training Data Generation
-
-Uses GLM-4.7 API to automatically generate high-quality training data:
-
-**Data Format**:
-```json
-{
-  "query": "How does Random Forest reduce overfitting?",
-  "chunk": "Random Forest combines multiple decision trees...",
-  "keywords": ["Random Forest", "Decision Trees", "Overfitting", "Ensemble"],
-  "score": 8.0,
-  "rationale": "Directly addresses core question..."
-}
-```
-
-**Scoring Criteria (1-10 scale)**:
-- **10**: Perfect match, complete answer
-- **8-9**: Excellent/Good match, minor gaps
-- **5-7**: Moderate relevance, needs supplementation
-- **1-4**: Low to no relevance
-
-```bash
-# Generate training data
-python src/reranker/data_generator.py
-```
-
-### 3. Hybrid Retrieval with Adaptive Routing
-
-**Query Type Detection**:
-- Keyword-heavy queries (e.g., "Fama-French model") → BM25 weighted
-- Conceptual queries (e.g., "explain overfitting") → Embedding weighted
-
-**Adaptive Strategy**:
-```python
-if query_has_technical_terms:
-    bm25_k, embed_k = 0.7 * top_k, 0.5 * top_k  # BM25 dominant
-else:
-    bm25_k, embed_k = 0.4 * top_k, 0.8 * top_k  # Embedding dominant
+┌─────────────────────────────────────────────────────────────────┐
+│                         PDF Input                                │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   Enhanced Parser                                │
+│  ┌─────────────┐  ┌──────────────┐  ┌──────────────────────┐   │
+│  │  Camelot    │  │ Code Detect  │  │   ParseBlock         │   │
+│  │  (Tables)   │  │ (Languages)  │  │   (Sliding Windows)  │   │
+│  └─────────────┘  └──────────────┘  └──────────────────────┘   │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      Chunk Storage                               │
+│  • baseline_chunks.json (555 chunks)                             │
+│  • enhanced_chunks.json (1,956 chunks)                           │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   Hybrid Retrieval                               │
+│  ┌─────────────┐  ┌──────────────┐  ┌──────────────────────┐   │
+│  │    BM25     │  │  Qwen3-Emb   │  │       RRF            │   │
+│  │ (Sparse)    │  │   (Dense)    │  │  (Score Fusion)      │   │
+│  └─────────────┘  └──────────────┘  └──────────────────────┘   │
+│                            │                                      │
+│                            ▼                                      │
+│                  ┌──────────────────┐                            │
+│                  │  Qwen3-Reranker │                            │
+│                  │      (API)      │                            │
+│                  └──────────────────┘                            │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   GLM-4 Generation                               │
+│                    (Answer Output)                               │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -219,14 +100,15 @@ else:
 - Python 3.10+
 - API Keys:
   - Baidu Qianfan (for embedding & reranker)
-  - GLM-4.7 (for answer generation)
+  - GLM-4 (for answer generation)
+  - Optional: DeepSeek/OpenAI (for Ragas evaluation)
 
 ### Setup
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/hku.G.rag.git
-cd hku.G.rag
+git clone https://github.com/your-username/hKu.G.rag.git
+cd hKu.G.rag
 
 # Create virtual environment
 python -m venv venv
@@ -236,84 +118,70 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Dependencies
-
-```
-# Core PDF parsing
-PyPDF2, pdfplumber, camelot-py
-
-# Retrieval
-faiss-cpu, jieba
-
-# APIs
-requests
-
-# Utilities
-tqdm, numpy, dataclasses
-```
-
 ### API Configuration
 
-Create a `.env` file or set environment variables:
+Set environment variables:
 
 ```bash
+# Required for RAG pipeline
 export QIANFAN_API_KEY="your-qianfan-key"
 export GLM_API_KEY="your-glm-key"
+
+# Optional: For Ragas evaluation
+export RAGAS_EVAL_LLM_API_KEY="your-deepseek-key"
+export RAGAS_EVAL_LLM_BASE_URL="https://api.deepseek.com"
+export RAGAS_EVAL_LLM_MODEL="deepseek-chat"
 ```
 
 ---
 
 ## Quick Start
 
-### 1. Parse Your PDF
+### 1. Parse PDF Documents
 
 ```bash
-# Enhanced parsing (Camelot + ParseBlock)
-python src/parser/pdf_parser.py slides/course.pdf \
-    --output data/parsed/enhanced_chunks.json \
-    --window-size 3 --overlap 1
+# Enhanced parsing (recommended)
+python -m src.parser.enhanced_parser \
+    --input data/slides/course.pdf \
+    --output data/parsed/enhanced_chunks.json
 
 # Baseline parsing (for comparison)
-python scripts/01_parse_baseline.py slides/course.pdf \
+python -m src.parser.baseline_parser \
+    --input data/slides/course.pdf \
     --output data/parsed/baseline_chunks.json
 ```
 
-### 2. Generate Reranker Training Data
+### 2. Run RAG Pipeline
 
 ```bash
-python src/reranker/data_generator.py
+# Basic evaluation (5 queries × 3 systems)
+python src/rag/evaluate.py
+
+# Ragas-based evaluation (comprehensive)
+python src/rag/ragas_eval.py
 ```
 
-Output: `data/reranker_data/train.jsonl`
+### 3. Interactive Query
 
-### 3. Run Complete RAG Pipeline
+```python
+from src.rag.pipeline import RAGPipeline, Document
+import json
 
-```bash
-# Interactive mode
-python src/rag/pipeline.py --chunks data/parsed/enhanced_chunks.json
+# Load documents
+with open("data/parsed/enhanced_chunks.json") as f:
+    chunks = json.load(f)
+documents = [Document(**c) for c in chunks]
 
-# Single query
-python src/rag/pipeline.py \
-    --chunks data/parsed/enhanced_chunks.json \
-    --query "What is the difference between ML and DL?"
-```
+# Initialize pipeline
+pipeline = RAGPipeline(
+    documents=documents,
+    qianfan_key="your-key",
+    glm_key="your-key"
+)
 
-### 4. Run Benchmarks
-
-```bash
-# Parsing quality benchmark
-python src/evaluation/parsing_benchmark.py \
-    --enhanced data/parsed/enhanced_chunks.json \
-    --baseline data/parsed/baseline_chunks.json \
-    --sample-size 10
-
-# Reranker benchmark
-python src/evaluation/reranker_eval.py \
-    --testset data/testset/reranker_benchmark.json
-
-# End-to-end benchmark
-python src/evaluation/e2e_eval.py \
-    --testset data/testset/e2e_benchmark.json
+# Query
+result = pipeline.run("What is overfitting in machine learning?")
+print(result["answer"])
 ```
 
 ---
@@ -321,188 +189,180 @@ python src/evaluation/e2e_eval.py \
 ## Project Structure
 
 ```
-hku.G.rag/
+hKu.G.rag/
 ├── README.md                          # This file
-├── requirements.txt                   # Python dependencies
+├── requirements.txt                   # Dependencies
 │
 ├── data/
-│   ├── slides/                       # Input PDFs
-│   │   └── 7215_slides.pdf           # Course slides (607 pages)
+│   ├── cache/                        # Vector embeddings (auto-generated)
+│   │   └── vectors_*.npy
 │   ├── parsed/                       # Parsed chunks
-│   │   ├── enhanced_chunks.json      # Enhanced parser output (259 chunks)
-│   │   ├── baseline_chunks.json      # Baseline parser output (555 chunks)
-│   │   └── benchmark_results.json    # Benchmark results
-│   ├── reranker_data/                # Reranker training data
-│   │   └── test_samples.jsonl        # Generated training samples
-│   └── testset/                      # Evaluation test sets (10 items each)
-│       ├── reranker_benchmark.json   # nDCG@10 evaluation
-│       ├── parsing_benchmark.json    # Key concept locations
-│       └── e2e_benchmark.json        # End-to-end QA pairs
+│   │   ├── enhanced_chunks.json      # Enhanced parser output (1,956 chunks)
+│   │   └── baseline_chunks.json      # Baseline parser output (555 chunks)
+│   └── evaluation/                   # Evaluation results
+│       ├── final_15_answers_fixed.json
+│       └── ragas_results.json
 │
 ├── src/
 │   ├── parser/
-│   │   └── pdf_parser.py             # Multi-modal PDF parser
-│   ├── retriever/
-│   │   ├── bm25_retriever.py         # BM25 sparse retrieval
-│   │   └── dense_retriever.py        # Qwen3-Embedding dense retrieval
-│   ├── reranker/
-│   │   ├── data_generator.py         # Training data generation
-│   │   └── qwen3_reranker.py         # Reranker model wrapper
+│   │   └── enhanced_parser.py        # Multi-modal PDF parser
 │   ├── rag/
-│   │   └── pipeline.py               # Complete RAG pipeline
-│   └── evaluation/
-│       ├── parsing_benchmark.py      # Parsing quality evaluation
-│       ├── reranker_eval.py          # nDCG evaluation
-│       └── e2e_eval.py               # End-to-end accuracy
+│   │   ├── pipeline.py               # RAG pipeline (RRF + Reranker)
+│   │   ├── evaluate.py               # Basic evaluation (5 queries)
+│   │   └── ragas_eval.py             # Ragas-based evaluation
+│   └── evaluation/                   # (deprecated, use src/rag/)
 │
-├── models/                            # Model storage (for local models)
-│   ├── qwen3_embedding_8b/           # Placeholder for embedding model
-│   └── qwen3_reranker_8b/            # Placeholder for reranker model
-│
-└── scripts/
-    ├── 01_parse_pdf.sh               # Parse PDF
-    ├── 02_generate_reranker_data.sh  # Generate training data
-    ├── 03_train_reranker.sh          # Fine-tune reranker
-    └── 04_run_eval.sh                # Run full benchmark
+├── v2/                                # Reference implementations
+└── models/                            # Local model storage (gitignored)
 ```
 
 ---
 
-## Component Details
+## Evaluation
 
-### PDF Parser
+### Basic Evaluation
 
-```python
-from src.parser.pdf_parser import MultiModalPDFParser
+The `evaluate.py` script runs 5 test queries across 3 system configurations:
 
-parser = MultiModalPDFParser(window_size=3, overlap=1)
-chunks = parser.parse("slides/course.pdf", use_tables=True)
+1. **Naive Parse + Naive RAG**: Baseline chunks, dense retrieval only
+2. **Enhanced Parse + Naive RAG**: Enhanced chunks, dense retrieval only
+3. **Enhanced Parse + Enhanced RAG**: Enhanced chunks, hybrid retrieval + reranker
 
-# Each chunk contains:
-# - content: text content
-# - source_type: 'table', 'text_block', or 'sliding_window'
-# - page_numbers: list of page numbers
-# - metadata: additional info
+```bash
+python src/rag/evaluate.py
 ```
 
-### Data Generator
+**Output**: `data/evaluation/final_15_answers_fixed.json`
 
-```python
-from src.reranker.data_generator import RerankerDataGenerator
+### Ragas Evaluation
 
-generator = RerankerDataGenerator(api_key="your-glm-key")
-dataset = generator.generate_dataset(chunks, num_samples=900)
+For comprehensive, LLM-based evaluation using the Ragas framework:
 
-# Save dataset
-generator.save_dataset(dataset, "data/reranker_data/train.jsonl")
+```bash
+# Set evaluation LLM (DeepSeek recommended)
+export RAGAS_EVAL_LLM_API_KEY="your-deepseek-key"
+export RAGAS_EVAL_LLM_BASE_URL="https://api.deepseek.com"
+export RAGAS_EVAL_LLM_MODEL="deepseek-chat"
+
+# Run evaluation
+python src/rag/ragas_eval.py
 ```
 
-### RAG Pipeline
+**Metrics**:
+- **Context Precision**: How relevant is the retrieved context?
+- **Context Recall**: Does the context cover the reference answer?
+- **Faithfulness**: Is the generated answer faithful to the context?
+- **Answer Relevancy**: Is the answer relevant to the query?
+
+**Output**: `data/evaluation/ragas_results.json`
+
+---
+
+## API Reference
+
+### RAGPipeline
 
 ```python
-from src.rag.pipeline import RAGPipeline, load_chunks_from_json
+class RAGPipeline:
+    def __init__(self, documents: List[Document], qianfan_key: str, glm_key: str):
+        """
+        Initialize RAG pipeline.
 
-# Load documents
-documents = load_chunks_from_json("data/parsed/enhanced_chunks.json")
+        Args:
+            documents: List of Document objects
+            qianfan_key: Baidu Qianfan API key (embedding & reranker)
+            glm_key: GLM-4 API key (generation)
+        """
 
-# Initialize pipeline
-pipeline = RAGPipeline(
-    documents=documents,
-    qianfan_api_key="your-qianfan-key",
-    glm_api_key="your-glm-key"
-)
+    def run(self, query: str, mode: str = 'hybrid') -> Dict:
+        """
+        Run RAG pipeline.
 
-# Query
-result = pipeline.query("What is overfitting?")
-print(result["answer"])
+        Args:
+            query: User query
+            mode: 'dense_only' or 'hybrid'
+                  - 'dense_only': Cosine similarity only
+                  - 'hybrid': BM25 + Dense + Reranker
+
+        Returns:
+            {
+                "method": str,
+                "top_scores": List[str],
+                "retrieved_chunks": List[Dict],
+                "answer": str
+            }
+        """
+```
+
+### Document
+
+```python
+@dataclass
+class Document:
+    content: str          # Text content
+    doc_id: str          # Unique identifier
+    metadata: Dict = None # Additional metadata (source_type, page_numbers, etc.)
 ```
 
 ---
 
-## Benchmarking
+## Configuration
 
-### Three-Stage Evaluation
+### RAGConfig
 
-#### Stage 1: Parsing Quality
+```python
+class RAGConfig:
+    # Models
+    EMBEDDING_MODEL = "qwen3-embedding-4b"    # Qianfan embedding model
+    RERANK_MODEL = "qwen3-reranker-8b"         # Qianfan reranker model
+    CHAT_MODEL = "glm-4"                       # GLM generation model
 
-**Metrics**:
-- **Table Preservation**: F1 score for table extraction
-- **Semantic Coherence**: LLM-rated chunk completeness (0-1)
-- **No Fragmentation**: % of complete concepts
-- **Content Coverage**: % of content vs baseline
-
-**Test Set**: 10 key concepts with expected page ranges
-
-```bash
-python src/evaluation/parsing_benchmark.py
+    # Caching
+    CACHE_DIR = "data/cache"
+    VECTOR_CACHE_PATH = "data/cache/vectors.npy"
 ```
 
-#### Stage 2: Reranker Performance
+### BM25 Parameters
 
-**Metrics**:
-- **nDCG@10**: Normalized discounted cumulative gain
-- **MRR**: Mean reciprocal rank
-
-**Test Set**: 10 queries with graded relevance labels
-
-```bash
-python src/evaluation/reranker_eval.py
+```python
+class BM25Retriever:
+    k1 = 1.5    # Term saturation parameter
+    b = 0.75    # Length normalization parameter
 ```
 
-#### Stage 3: End-to-End Accuracy
+### RRF Parameters
 
-**Metrics**:
-- **Semantic Similarity**: BERTScore between generated and gold answers
-- **Keyword Jaccard**: Jaccard similarity of extracted keywords
-- **Final Score**: `0.7 * Semantic + 0.3 * Jaccard`
+```python
+# In hybrid_retrieve()
+k_const = 60  # RRF constant (higher = smoother rank fusion)
 
-**Test Set**: 10 question-answer pairs
-
-```bash
-python src/evaluation/e2e_eval.py
+# Dynamic weighting based on query type
+if is_keyword_query:
+    bm25_weight, dense_weight = 0.7, 0.3
+else:
+    bm25_weight, dense_weight = 0.3, 0.7
 ```
 
 ---
 
-## Performance
+## Dependencies
 
-### Benchmark Results
+```
+# Core
+numpy>=1.24.0
+requests>=2.31.0
+jieba>=0.42.0
 
-**Source**: IDAT7215 Course Slides (607 pages, HKU Computer Science Department)
+# PDF parsing
+PyPDF2>=3.0.0
+pdfplumber>=0.10.0
+camelot-py[cv]>=0.11.0
+opencv-python>=4.8.0
 
-#### PDF Parsing Comparison (Measured)
-
-| Metric | Baseline (pdfplumber only) | Enhanced (Multi-Modal) | Improvement |
-|--------|---------------------------|----------------------|-------------|
-| **Overall Score** | **0.606** | **0.706** | **+16.5%** |
-| Total Chunks | 555 | 259 | -53.3% |
-| Avg Chunk Length | 267 chars | 857 chars | +221% |
-| Concept Coverage | 53.3% | 66.7% | +13.4% |
-| Concept Completeness | 0.433 | 0.520 | +8.7% |
-| Cross-Page Chunks | 0 | 258 | ✅ |
-| Short Chunks (<100) | 100 | 0 | ✅ |
-| Fragmentation Issues | High | None | ✅ |
-
-**Key Findings**:
-- Enhanced produces **53% fewer chunks** while capturing **13% more concepts**
-- Each chunk is **3x longer** on average (857 vs 267 chars), indicating more complete information
-- **Zero fragmentation**: Enhanced has no chunks <100 chars, baseline has 100
-- **Cross-page concepts**: Enhanced captures 258 cross-page chunks, baseline has 0
-
-#### Expected RAG Pipeline Performance
-
-| Component | Naive RAG | Enhanced RAG | Improvement |
-|-----------|-----------|-------------|-------------|
-| **Accuracy** | **68.6%** | **89.9%** | **+21.35%** |
-| Retrieval | BM25 only | BM25 + Embedding | Semantic understanding |
-| Reranking | None | Qwen3-Reranker-8B | Relevance filtering |
-| Query Type Awareness | No | Yes | Adaptive routing |
-| Chunk Quality | Fragmented | Complete | Better context |
-
-**Components contributing to improvement**:
-- Better chunks: +5-7%
-- Hybrid retrieval: +8-10%
-- Reranking: +6-8%
+# Evaluation (optional)
+ragas>=0.1.0
+langchain-openai>=0.1.0
+```
 
 ---
 
@@ -512,10 +372,10 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @software{hku_g_rag,
-  title={hku.G.RAG: An Agentic RAG Framework for Academic Courseware},
+  title={HKU G.RAG: Production RAG Pipeline with Multi-Modal Parsing},
   author={Your Name},
   year={2025},
-  url={https://github.com/your-username/hku.G.rag}
+  url={https://github.com/your-username/hKu.G.rag}
 }
 ```
 
@@ -529,13 +389,13 @@ Apache License 2.0
 
 ## Acknowledgments
 
-- **Qwen Team** for the excellent embedding and reranker models
+- **Qwen Team** for Qwen3-Embedding and Qwen3-Reranker models
 - **Baidu Qianfan** for API access to embedding and reranking services
-- **GLM (Zhipu AI)** for the API access to data generation
-- **HKU Computer Science Department** for the course materials (IDAT7215)
+- **GLM (Zhipu AI)** for the API access to generation
+- **Ragas** for the evaluation framework
 
 ---
 
 ## Contact
 
-For questions and feedback, please open an issue on GitHub or contact [u3631628@connect.hku.hk](mailto:u3631628@connect.hku.hk).
+For questions and feedback, please open an issue on GitHub.
