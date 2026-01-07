@@ -20,6 +20,7 @@
 - **Hybrid Retrieval**: BM25 + Dense embedding with Reciprocal Rank Fusion (RRF)
 - **Reranker**: Qwen3-Reranker-8B via Baidu Qianfan API
 - **Vector Caching**: Hash-based persistence for fast restart
+- **Memory System**: Short-term and long-term memory for multi-turn conversations
 - **Ragas Evaluation**: LLM-based metrics (Context Recall, Faithfulness, etc.)
 
 ### Performance
@@ -136,6 +137,48 @@ result = pipeline.run("What is overfitting in machine learning?")
 print(result["answer"])
 ```
 
+### 4. Agentic RAG with Memory (Multi-turn Conversations)
+
+For multi-turn conversations with memory:
+
+```python
+from src.agent import AgenticRAG
+
+# Initialize agent with memory
+agent = AgenticRAG(
+    pipeline=pipeline,
+    enable_memory=True,
+    short_term_size=10,  # Remember last 10 turns
+    long_term_path="data/memory/memories.json"
+)
+
+# Query with memory
+result = agent.query(
+    "What is machine learning?",
+    use_memory=True,
+    save_to_memory=True,
+    importance=0.7  # Higher importance = saved to long-term memory
+)
+
+print(result["answer"])
+
+# Follow-up question (agent remembers context)
+result = agent.query(
+    "How is it different from deep learning?",  # "it" refers to previous context
+    use_memory=True
+)
+```
+
+**Demo**:
+```bash
+python demo_agent.py
+```
+
+**Memory Features**:
+- **Short-term Memory**: Recent conversation history (default: 10 turns)
+- **Long-term Memory**: Persistent storage with vector retrieval
+- **Memory Integration**: Combines memory with RAG results for better context
+
 ---
 
 ## Project Structure
@@ -144,10 +187,13 @@ print(result["answer"])
 hKu.G.rag/
 ├── README.md                          # This file
 ├── requirements.txt                   # Dependencies
+├── demo_agent.py                      # Agentic RAG demo
 │
 ├── data/
 │   ├── cache/                        # Vector embeddings (auto-generated)
 │   │   └── vectors_*.npy
+│   ├── memory/                       # Memory storage (auto-generated)
+│   │   └── memories.json
 │   ├── parsed/                       # Parsed chunks
 │   │   ├── enhanced_chunks.json      # Enhanced parser output (1,956 chunks)
 │   │   └── baseline_chunks.json      # Baseline parser output (555 chunks)
@@ -156,13 +202,16 @@ hKu.G.rag/
 │       └── ragas_results.json
 │
 ├── src/
+│   ├── agent/                        # Agentic RAG with Memory
+│   │   ├── __init__.py
+│   │   ├── agent.py                  # AgenticRAG main class
+│   │   └── memory.py                 # Memory system (short-term + long-term)
 │   ├── parser/
 │   │   └── enhanced_parser.py        # Multi-modal PDF parser
-│   ├── rag/
-│   │   ├── pipeline.py               # RAG pipeline (RRF + Reranker)
-│   │   ├── evaluate.py               # Basic evaluation (5 queries)
-│   │   └── ragas_eval.py             # Ragas-based evaluation
-│   └── evaluation/                   # (deprecated, use src/rag/)
+│   └── rag/
+│       ├── pipeline.py               # RAG pipeline (RRF + Reranker)
+│       ├── evaluate.py               # Basic evaluation (5 queries)
+│       └── ragas_eval.py             # Ragas-based evaluation
 │
 ├── v2/                                # Reference implementations
 └── models/                            # Local model storage (gitignored)
@@ -254,6 +303,59 @@ class Document:
     content: str          # Text content
     doc_id: str          # Unique identifier
     metadata: Dict = None # Additional metadata (source_type, page_numbers, etc.)
+```
+
+### AgenticRAG
+
+```python
+class AgenticRAG:
+    def __init__(self, pipeline: RAGPipeline, enable_memory: bool = True,
+                 short_term_size: int = 10, long_term_path: str = "data/memory/memories.json"):
+        """
+        Initialize Agentic RAG with memory.
+
+        Args:
+            pipeline: RAGPipeline instance
+            enable_memory: Enable memory system
+            short_term_size: Number of recent turns to remember
+            long_term_path: Path to long-term memory storage
+        """
+
+    def query(self, user_query: str, mode: str = "hybrid",
+              use_memory: bool = True, save_to_memory: bool = True,
+              importance: float = 0.5) -> Dict:
+        """
+        Query with memory support.
+
+        Args:
+            user_query: User question
+            mode: 'dense_only' or 'hybrid'
+            use_memory: Use conversation memory
+            save_to_memory: Save to memory
+            importance: Importance score (0-1), >= 0.7 saves to long-term memory
+
+        Returns:
+            {
+                "answer": str,
+                "sources": List[Dict],
+                "scores": List[str],
+                "memory_used": Dict,
+                "tools_used": List[str],
+                "has_memory": bool
+            }
+        """
+
+    def chat(self, message: str, **kwargs) -> str:
+        """Simple chat interface, returns answer only."""
+
+    def get_memory_stats(self) -> Dict:
+        """Get memory statistics."""
+
+    def clear_short_term_memory(self):
+        """Clear short-term memory (start new conversation)."""
+
+    def get_conversation_history(self, k: int = 5) -> List[Dict]:
+        """Get recent conversation history."""
 ```
 
 ---
