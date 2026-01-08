@@ -12,7 +12,7 @@ import os
 sys.path.append('src/rag')
 
 from pipeline import RAGPipeline
-from memory import MemorySystem, MemoryItem
+from .memory import MemorySystem, MemoryItem
 from typing import List, Dict, Optional
 import numpy as np
 

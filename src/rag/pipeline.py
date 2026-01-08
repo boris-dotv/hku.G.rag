@@ -23,7 +23,7 @@ class RAGConfig:
     # AutoDL/Server config compatible
     EMBEDDING_MODEL = "qwen3-embedding-4b"
     RERANK_MODEL = "qwen3-reranker-8b"
-    CHAT_MODEL = "glm-4"
+    CHAT_MODEL = "glm-4.7"
 
     # Caching paths
     CACHE_DIR = "data/cache"
@@ -256,10 +256,29 @@ class RAGPipeline:
             "messages": [{"role": "user", "content": prompt}]
         }
         try:
-            res = requests.post(url, headers=headers, json=payload).json()
-            return res["choices"][0]["message"]["content"]
+            res = requests.post(url, headers=headers, json=payload, timeout=60)
+            res.raise_for_status()
+            data = res.json()
+
+            if "choices" not in data:
+                print(f"GLM API Error Response: {data}")
+                return f"Error: API returned unexpected format - {data}"
+
+            return data["choices"][0]["message"]["content"]
+
+        except requests.exceptions.HTTPError as e:
+            print(f"GLM API HTTP Error: {e}")
+            print(f"Response: {e.response.text if hasattr(e, 'response') else 'No response'}")
+            return f"Error: GLM API request failed - {str(e)}"
+        except requests.exceptions.Timeout:
+            print("GLM API Timeout")
+            return "Error: Request timeout"
+        except requests.exceptions.RequestException as e:
+            print(f"GLM API Request Error: {e}")
+            return f"Error: Request failed - {str(e)}"
         except Exception as e:
-            return f"Error: {e}"
+            print(f"GLM Generation Error: {e}")
+            return f"Error: {str(e)}"
 
     def run(self, query: str, mode: str = 'hybrid'):
         """
