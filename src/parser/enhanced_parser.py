@@ -19,14 +19,9 @@ import hashlib
 from typing import List, Dict, Optional, Set
 from dataclasses import dataclass, asdict
 from collections import defaultdict
+import pdfplumber
+import camelot
 
-# 依赖库检查
-try:
-    import pdfplumber
-    import camelot
-    # pytesseract needs system installation, keeping it optional
-except ImportError as e:
-    print(f"Critical Warning: Missing dependencies ({e}). Please install pdfplumber and camelot-py[cv].")
 
 # ==========================================
 # Data Structures

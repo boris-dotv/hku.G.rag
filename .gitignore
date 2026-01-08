@@ -41,3 +41,18 @@ models/*
 # Vector cache & index files (regenerable)
 data/cache/*.npy
 data/parsed/*.npy
+
+# Memory system (runtime generated)
+data/memory/
+
+# Evaluation logs (keep results, exclude logs)
+data/evaluation/run_log*.txt
+data/evaluation/*_old.json
+data/evaluation/*_serial.json
+
+# Demo and debug scripts (temporary)
+demo_*.py
+debug_*.py
+analyze_comparison.py
+retry_failed_queries.py
+update_agentic_results.py

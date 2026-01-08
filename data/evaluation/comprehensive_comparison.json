@@ -1,0 +1,752 @@
+{
+  "timestamp": "2026-01-08T23:37:30.029203",
+  "total_queries": 6,
+  "total_results": 18,
+  "systems": [
+    "Naive Parse + Naive RAG",
+    "Enhanced Parse + Enhanced RAG",
+    "Enhanced Parse + Agentic RAG"
+  ],
+  "results": [
+    {
+      "query_id": 1,
+      "category": "Table Extraction",
+      "query": "What are the main differences between deep learning and machine learning in terms of hardware dependency?",
+      "results": [
+        {
+          "method": "Naive RAG (dense_only)",
+          "top_scores": [
+            "0.8364",
+            "0.6164",
+            "0.6154"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "baseline_page_15",
+              "source_type": "baseline_page",
+              "content": "Deep Learning Vs Machine Learning \nDeep learning is a machine learning \nData dependency Hardware dependency\nDeep learning depend on the high -end machine where \nMachine learning can work with a low-en..."
+            },
+            {
+              "chunk_id": "baseline_page_24",
+              "source_type": "baseline_page",
+              "content": "Types of Machine Learning \nDATA..."
+            },
+            {
+              "chunk_id": "baseline_page_38",
+              "source_type": "baseline_page",
+              "content": "Processes involved in Machine Learning..."
+            }
+          ],
+          "answer": "Based on the provided text, the main differences regarding hardware dependency are:\n\n*   **Deep learning** depends on high-end machines.\n*   **Machine learning** can work with low-end machines.",
+          "system": "Naive Parse + Naive RAG",
+          "time": "6.11s"
+        },
+        {
+          "method": "Enhanced RAG (RRF + Rerank)",
+          "top_scores": [
+            "0.9990",
+            "0.9980",
+            "0.9979",
+            "0.9978",
+            "0.9974"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "table_16_0",
+              "source_type": "table",
+              "content": "| 0                                   | 1                                                  |\n|:------------------------------------|:---------------------------------------------------|\n| Deep Learnin..."
+            },
+            {
+              "chunk_id": "text_window_800_1800",
+              "source_type": "text_sliding_window_800",
+              "content": "Machine Learning\nY\nX\nHight (cm)\n)gk(\nthgieW\nW=H-100\n\nExample of Machine Learning\nY\nX\nHight (cm)\n)gk(\nthgieW\nW=H-100\nError\nError\nMinimize Error\n\nWhat is Deep Learning\nDeep learning is a particular kind..."
+            },
+            {
+              "chunk_id": "text_window_800_2400",
+              "source_type": "text_sliding_window_800",
+              "content": "ine Learning\nis\nDeep learning a machine learning\nDeep learning depend on the high-end machine where\nMachine learning can work with a low-end machine\nData dependency Hardware dependency\n\n[Reference: Th..."
+            },
+            {
+              "chunk_id": "text_fixed_1024_2048",
+              "source_type": "text_fixed_1024",
+              "content": "ctionality of brain cells called neurons which led to the concept of artificial\nneural network.\n\nExample of Deep Learning\n▪ Sides = 4\n▪ Closed\n▪ Perpendicular\n▪ Equal sizes\nWell, it is nothing but a n..."
+            },
+            {
+              "chunk_id": "text_fixed_256_2304",
+              "source_type": "text_fixed_256",
+              "content": "tion contains structured data in: table_14_0]\n\n\n\nExample of Deep Learning\n\nDeep Learning Vs Machine Learning\nis\nDeep learning a machine learning\nDeep learning depend on the high-end machine where\nMach..."
+            }
+          ],
+          "answer": "Based on the provided text, the main difference regarding hardware dependency is that **deep learning depends on high-end machines**, whereas **machine learning can work with low-end machines**.",
+          "system": "Enhanced Parse + Enhanced RAG",
+          "time": "13.81s"
+        },
+        {
+          "answer": "Based on the provided context, the main differences between deep learning and machine learning regarding hardware dependency are:\n\n*   **Deep Learning:** Depends on high-end machines.\n*   **Machine Learning:** Can work with low-end machines.",
+          "sources": [
+            {
+              "chunk_id": "table_16_0",
+              "source_type": "table",
+              "content": "| 0                                   | 1                                                  |\n|:------------------------------------|:---------------------------------------------------|\n| Deep Learnin..."
+            },
+            {
+              "chunk_id": "text_window_800_1800",
+              "source_type": "text_sliding_window_800",
+              "content": "Machine Learning\nY\nX\nHight (cm)\n)gk(\nthgieW\nW=H-100\n\nExample of Machine Learning\nY\nX\nHight (cm)\n)gk(\nthgieW\nW=H-100\nError\nError\nMinimize Error\n\nWhat is Deep Learning\nDeep learning is a particular kind..."
+            },
+            {
+              "chunk_id": "text_window_800_2400",
+              "source_type": "text_sliding_window_800",
+              "content": "ine Learning\nis\nDeep learning a machine learning\nDeep learning depend on the high-end machine where\nMachine learning can work with a low-end machine\nData dependency Hardware dependency\n\n[Reference: Th..."
+            },
+            {
+              "chunk_id": "text_fixed_1024_2048",
+              "source_type": "text_fixed_1024",
+              "content": "ctionality of brain cells called neurons which led to the concept of artificial\nneural network.\n\nExample of Deep Learning\n▪ Sides = 4\n▪ Closed\n▪ Perpendicular\n▪ Equal sizes\nWell, it is nothing but a n..."
+            },
+            {
+              "chunk_id": "text_fixed_256_2304",
+              "source_type": "text_fixed_256",
+              "content": "tion contains structured data in: table_14_0]\n\n\n\nExample of Deep Learning\n\nDeep Learning Vs Machine Learning\nis\nDeep learning a machine learning\nDeep learning depend on the high-end machine where\nMach..."
+            }
+          ],
+          "react_steps": 2,
+          "reflections_count": 1,
+          "thoughts": [
+            "I need to search for information about What are the main differences between deep learning and machine learning in terms of hardware dependency?",
+            "I have sufficient information from the search to answer"
+          ],
+          "tools_used": [
+            "search"
+          ],
+          "original_query": "What are the main differences between deep learning and machine learning in terms of hardware dependency?",
+          "rewritten_query": "What are the main differences between deep learning and machine learning in terms of hardware dependency?",
+          "query_was_rewritten": false,
+          "system": "Enhanced Parse + Agentic RAG",
+          "time": "30.32s (with CoT)"
+        }
+      ]
+    },
+    {
+      "query_id": 2,
+      "category": "Cross-Page Context",
+      "query": "Explain the process of splitting a dataset into training and test sets using both serial and random methods.",
+      "results": [
+        {
+          "method": "Naive RAG (dense_only)",
+          "top_scores": [
+            "0.7519",
+            "0.7195",
+            "0.6936"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "baseline_page_18",
+              "source_type": "baseline_page",
+              "content": "Serial Splitting of the Dataset  \nThe simplest method of splitting data is to split it serially .\n▪Take the first 80% rows and put them into the training set . \n▪Take the remaining 20% rows and put th..."
+            },
+            {
+              "chunk_id": "baseline_page_22",
+              "source_type": "baseline_page",
+              "content": "Cross Validation\nDATATraining  \nData\nT est  \nData\nTrain\nModel\nAccuracySplit Dataset into Training  and T est Use Training Data to Train the Model\nTraining  \nData\nV alidation\nData\nPredict  \nAccuracyRan..."
+            },
+            {
+              "chunk_id": "baseline_page_19",
+              "source_type": "baseline_page",
+              "content": "Random Splitting of the Dataset  \nAnother method is too pick rows at random .\n▪ Sci-kit learn has a built -in method\nDATAfrom sklearn.cross_validation  import  train_test_split\nncols  = dataset.shape ..."
+            }
+          ],
+          "answer": "Based on the provided context, the dataset can be split into training and test sets using the following two methods:\n\n**1. Serial Splitting**\nThis is considered the simplest method, where the data is divided based on the order of the rows.\n*   **The Process:** The first 80% of the rows are assigned to the training set, and the remaining 20% of the rows are assigned to the test set.\n*   **Implementation:** Using the pandas library, the total number of rows is calculated. The `iloc` function is then used to slice the dataframe: the training set takes rows from the start up to the 80% threshold, and the test set takes the rows from that threshold to the end.\n\n**2. Random Splitting**\nThis method involves selecting rows for the sets at random rather than following the original order.\n*   **The Process:** The dataset is first separated into features (all columns except the last one) and labels (the last column). The `train_test_split` function from the scikit-learn library is then used to divide these into training and test sets.\n*   **Implementation:** When calling the function, the user specifies the `test_size` (e.g., 0.2 for 20%) and a `random_state` (a seed for the random number generator) to determine the split.",
+          "system": "Naive Parse + Naive RAG",
+          "time": "26.31s"
+        },
+        {
+          "method": "Enhanced RAG (RRF + Rerank)",
+          "top_scores": [
+            "0.9998",
+            "0.9996",
+            "0.9994",
+            "0.9986",
+            "0.9967"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "text_fixed_1024_3072",
+              "source_type": "text_fixed_1024",
+              "content": "\nAccuracy\nTest the Model Accuracy\n\n[Reference: This section contains structured data in: table_18_0]\n\n\n\nSerial Splitting of the Dataset\nThe simplest method of splitting data is to split it serially.\n▪..."
+            },
+            {
+              "chunk_id": "text_window_800_3000",
+              "source_type": "text_sliding_window_800",
+              "content": "e Model\nTraining\nTrain\nData\nProduce Model\nDATA\nTest Model\nData\nDetermine\nAccuracy\nTest the Model Accuracy\n\n[Reference: This section contains structured data in: table_18_0]\n\n\n\nSerial Splitting of the ..."
+            },
+            {
+              "chunk_id": "text_fixed_512_3584",
+              "source_type": "text_fixed_512",
+              "content": "aset.iloc[ 1: int(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitti..."
+            },
+            {
+              "chunk_id": "text_window_800_3600",
+              "source_type": "text_sliding_window_800",
+              "content": "t(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitting of the Datase..."
+            },
+            {
+              "chunk_id": "text_fixed_256_3072",
+              "source_type": "text_fixed_256",
+              "content": "\nAccuracy\nTest the Model Accuracy\n\n[Reference: This section contains structured data in: table_18_0]\n\n\n\nSerial Splitting of the Dataset\nThe simplest method of splitting data is to split it serially.\n▪..."
+            }
+          ],
+          "answer": "Based on the provided context, here is the explanation of the process for splitting a dataset into training and test sets using both serial and random methods:\n\n### 1. Serial Splitting of the Dataset\nThis is described as the simplest method of splitting data. It involves dividing the dataset based on the order of the rows.\n\n*   **The Process:**\n    *   **Training Set:** Take the first 80% of the rows from the dataset and assign them to the training set.\n    *   **Test Set:** Take the remaining 20% of the rows (the bottom portion) and assign them to the test set.\n*   **Implementation (using pandas):**\n    *   Load the data (e.g., using `pd.read_csv`).\n    *   Determine the total number of rows using `dataset.shape[0]`.\n    *   Use the `.iloc` function to slice the dataframe. The training set includes rows from the start up to 80% of the total count, and the test set includes the rows from that cutoff point to the end.\n\n### 2. Random Splitting of the Dataset\nThis method involves selecting rows for the training and test sets at random, rather than following the original order.\n\n*   **The Process:**\n    *   Pick rows at random to populate the training and test sets.\n    *   Typically, the split is still 80% for training and 20% for testing.\n*   **Implementation (using Sci-kit learn):**\n    *   **Prepare Features and Labels:** Separate the dataset into features ($X$) and the label/target ($y$). Usually, $X$ includes all columns except the last one, and $y$ is the last column.\n    *   **Use `train_test_split`:** Utilize the built-in method from `sklearn.cross_validation`.\n    *   **Parameters:**\n        *   `test_size = 0.2`: This specifies that 20% of the data should be allocated to the test set (leaving 80% for the training set).\n        *   `random_state = 0`: This sets a seed for the random number generator, ensuring the random splits can be reproduced.",
+          "system": "Enhanced Parse + Enhanced RAG",
+          "time": "16.28s"
+        },
+        {
+          "answer": "Based on the provided context, here is the explanation of the processes for splitting a dataset into training and test sets using serial and random methods.\n\n### 1. Serial Splitting of the Dataset\nThis is described as the simplest method of splitting data, relying on the order of the rows.\n\n*   **The Process:**\n    *   The dataset is divided based on the sequence in which the rows appear.\n    *   The **first 80%** of the rows are allocated to the **training set**.\n    *   The **remaining 20%** of the rows are allocated to the **test set**.\n*   **Implementation (using Pandas):**\n    *   The data is loaded into a pandas DataFrame.\n    *   The total number of rows (`nrows`) is determined using `dataset.shape[0]`.\n    *   The training set is created by selecting rows from the start up to the 80% mark: `dataset.iloc[ 1: int(nrows * .8) , : ]`.\n    *   The test set is created by selecting the remaining rows from the 80% mark to the end: `dataset.iloc[int(nrows * .8) +1, nrows, : ]`.\n\n### 2. Random Splitting of the Dataset\nThis method involves selecting rows for the training and test sets at random, rather than following the dataset's original order.\n\n*   **The Process:**\n    *   Rows are picked randomly to populate the training and test sets.\n    *   This is often done using a built-in method from the **Sci-kit learn** library.\n*   **Implementation (using Sci-kit learn):**\n    *   The dataset is separated into features (**X**) and the label (**y**).\n        *   **X** includes all columns except the last one: `dataset.iloc[ :, :-1 ]`.\n        *   **y** is the last column (the label): `dataset.iloc[ :, ncols ]`.\n    *   The `train_test_split` function is used to divide the data.\n    *   Parameters are set to ensure an **80%** training size and a **20%** test size (`test_size = 0.2`).\n    *   A `random_state` (seed) is defined (e.g., `0`) to ensure the random splits can be reproduced.",
+          "sources": [
+            {
+              "chunk_id": "text_fixed_1024_3072",
+              "source_type": "text_fixed_1024",
+              "content": "\nAccuracy\nTest the Model Accuracy\n\n[Reference: This section contains structured data in: table_18_0]\n\n\n\nSerial Splitting of the Dataset\nThe simplest method of splitting data is to split it serially.\n▪..."
+            },
+            {
+              "chunk_id": "text_window_800_3000",
+              "source_type": "text_sliding_window_800",
+              "content": "e Model\nTraining\nTrain\nData\nProduce Model\nDATA\nTest Model\nData\nDetermine\nAccuracy\nTest the Model Accuracy\n\n[Reference: This section contains structured data in: table_18_0]\n\n\n\nSerial Splitting of the ..."
+            },
+            {
+              "chunk_id": "text_fixed_512_3584",
+              "source_type": "text_fixed_512",
+              "content": "aset.iloc[ 1: int(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitti..."
+            },
+            {
+              "chunk_id": "text_window_800_3600",
+              "source_type": "text_sliding_window_800",
+              "content": "t(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitting of the Datase..."
+            },
+            {
+              "chunk_id": "text_fixed_256_3072",
+              "source_type": "text_fixed_256",
+              "content": "\nAccuracy\nTest the Model Accuracy\n\n[Reference: This section contains structured data in: table_18_0]\n\n\n\nSerial Splitting of the Dataset\nThe simplest method of splitting data is to split it serially.\n▪..."
+            }
+          ],
+          "react_steps": 2,
+          "reflections_count": 1,
+          "thoughts": [
+            "I need to search for information about 'Explain the process of splitting a dataset into training and test sets using both serial and random methods.'. Note: Previous topic: learning, what, main",
+            "I have sufficient information from the search to answer"
+          ],
+          "tools_used": [
+            "search"
+          ],
+          "original_query": "Explain the process of splitting a dataset into training and test sets using both serial and random methods.",
+          "rewritten_query": "Explain the process of splitting a dataset into training and test sets using both serial and random methods.",
+          "query_was_rewritten": false,
+          "system": "Enhanced Parse + Agentic RAG",
+          "time": "93.51s (with CoT)"
+        }
+      ]
+    },
+    {
+      "query_id": 3,
+      "category": "Overfitting Definition",
+      "query": "What is overfitting in machine learning?",
+      "results": [
+        {
+          "method": "Naive RAG (dense_only)",
+          "top_scores": [
+            "0.6527",
+            "0.6517",
+            "0.6364"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "baseline_page_38",
+              "source_type": "baseline_page",
+              "content": "Processes involved in Machine Learning..."
+            },
+            {
+              "chunk_id": "baseline_page_21",
+              "source_type": "baseline_page",
+              "content": "Data Imbalance -Overfitting\nTraining  \nData  \n(90%\nApple,  \n10%\nPear)Training  \nData\nT est  \nData\nTrain\nModelNearly all samples are an Apple\nPear\nT est Sample is a PearIn an imbalance, the model will ..."
+            },
+            {
+              "chunk_id": "baseline_page_43",
+              "source_type": "baseline_page",
+              "content": "What we can achieve using scikit -learn..."
+            }
+          ],
+          "answer": "Based on the provided context, overfitting (specifically in the context of data imbalance) occurs when the model **fits itself to the imbalance in the data rather than the predictor**.\n\nFor example, because the training data contains mostly \"Apples\" (90%) and few \"Pears\" (10%), the model learns to predict \"Apple\" for almost everything. Consequently, when the model encounters a test sample that is actually a \"Pear,\" it will most likely incorrectly predict it as an \"Apple.\"",
+          "system": "Naive Parse + Naive RAG",
+          "time": "7.95s"
+        },
+        {
+          "method": "Enhanced RAG (RRF + Rerank)",
+          "top_scores": [
+            "0.7813",
+            "0.6011",
+            "0.1824",
+            "0.1441",
+            "0.0839"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "text_fixed_256_4608",
+              "source_type": "text_fixed_256",
+              "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+            },
+            {
+              "chunk_id": "text_fixed_512_4608",
+              "source_type": "text_fixed_512",
+              "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+            },
+            {
+              "chunk_id": "text_fixed_1024_4096",
+              "source_type": "text_fixed_1024",
+              "content": "is all the features (exclude last column)\ny = dataset.iloc[ :, ncols ] # Y is the label (last column)\n# Split the data, with 80% train and 20% test\nX_train, X_test, y_train, y_test = train_test_split(..."
+            },
+            {
+              "chunk_id": "table_22_0",
+              "source_type": "table",
+              "content": "| 0                               | 1                                                                               |\n|:--------------------------------|:----------------------------------------------..."
+            },
+            {
+              "chunk_id": "text_fixed_256_4352",
+              "source_type": "text_fixed_256",
+              "content": "\nsplitsize\nNumbergenerator\n\n[Reference: This section contains structured data in: table_20_0]\n\n\n\nData Imbalance-Overfitting\n▪ If the training data is overly unbalanced, then the model will predict a n..."
+            }
+          ],
+          "answer": "Based on the provided context, overfitting occurs when a model fits itself to the imbalance in the training data rather than the actual predictor. \n\nSpecifically, if the training data is overly unbalanced (e.g., nearly all samples are of the same label like \"apple\"), the model will simply learn to predict that label for everything. This results in non-meaningful predictions, such as predicting a \"pear\" is an \"apple.\" To prevent this, the text suggests there needs to be a fairly equal distribution of training samples for each classification.",
+          "system": "Enhanced Parse + Enhanced RAG",
+          "time": "23.75s"
+        },
+        {
+          "answer": "Based on the provided context, overfitting is described in relation to **data imbalance** within binary classifiers.\n\nSpecifically, if the training data is overly unbalanced (for example, nearly all samples are of the same label, such as \"apple\" in an apple vs. pear classification task), the model will simply learn to predict that label for everything. This phenomenon is categorized under \"Data Imbalance-Overfitting.\"",
+          "sources": [
+            {
+              "chunk_id": "text_fixed_256_4608",
+              "source_type": "text_fixed_256",
+              "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+            },
+            {
+              "chunk_id": "text_fixed_512_4608",
+              "source_type": "text_fixed_512",
+              "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+            },
+            {
+              "chunk_id": "table_22_0",
+              "source_type": "table",
+              "content": "| 0                               | 1                                                                               |\n|:--------------------------------|:----------------------------------------------..."
+            },
+            {
+              "chunk_id": "text_fixed_256_4352",
+              "source_type": "text_fixed_256",
+              "content": "\nsplitsize\nNumbergenerator\n\n[Reference: This section contains structured data in: table_20_0]\n\n\n\nData Imbalance-Overfitting\n▪ If the training data is overly unbalanced, then the model will predict a n..."
+            },
+            {
+              "chunk_id": "text_fixed_1024_1024",
+              "source_type": "text_fixed_1024",
+              "content": " & Artificial Intelligence: How to train more robust versions of the AI systems.\nNeuroscience: How to design operational models of the brain.\n\n[Reference: This section contains structured data in: tab..."
+            }
+          ],
+          "react_steps": 2,
+          "reflections_count": 1,
+          "thoughts": [
+            "I need to search for information about 'What is overfitting in machine learning?'. Note: Previous topic: explain, process, splitting",
+            "I have sufficient information from the search to answer"
+          ],
+          "tools_used": [
+            "search"
+          ],
+          "original_query": "What is overfitting in machine learning?",
+          "rewritten_query": "What is overfitting in machine learning?",
+          "query_was_rewritten": false,
+          "system": "Enhanced Parse + Agentic RAG",
+          "time": "46.50s (with CoT)"
+        }
+      ]
+    },
+    {
+      "query_id": 4,
+      "category": "Overfitting Prevention",
+      "query": "How can it be prevented?",
+      "results": [
+        {
+          "method": "Naive RAG (dense_only)",
+          "top_scores": [
+            "0.5495",
+            "0.5355",
+            "0.5341"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "baseline_page_189",
+              "source_type": "baseline_page",
+              "content": "Weather Example: Questions and Rules..."
+            },
+            {
+              "chunk_id": "baseline_page_184",
+              "source_type": "baseline_page",
+              "content": "Weather Example: First Without Questions..."
+            },
+            {
+              "chunk_id": "baseline_page_449",
+              "source_type": "baseline_page",
+              "content": "UseSummary Statistics toExplore Data..."
+            }
+          ],
+          "answer": "Based on the context provided, which refers to the classic \"Weather\" dataset used in machine learning (specifically for Decision Trees), the question \"How can it be prevented?\" most likely refers to **overfitting**.\n\nIn the context of the \"Weather Example: Questions and Rules,\" a decision tree can be created that fits the training data perfectly. However, if the tree becomes too complex (too many specific questions/rules), it captures noise rather than the underlying pattern. This is called **overfitting**.\n\nIt is prevented by **pruning** the tree (removing branches that have little predictive power) or by setting a minimum number of instances for leaf nodes.",
+          "system": "Naive Parse + Naive RAG",
+          "time": "71.92s"
+        },
+        {
+          "method": "Enhanced RAG (RRF + Rerank)",
+          "top_scores": [
+            "0.0132",
+            "0.0081",
+            "0.0081",
+            "0.0028",
+            "0.0011"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "text_window_800_177600",
+              "source_type": "text_sliding_window_800",
+              "content": "s section contains structured data in: table_605_0]\n\n\n\nMoodle\n\n[Reference: This section contains structured data in: table_606_0]\n\n\n\nAny Question?\n\n..."
+            },
+            {
+              "chunk_id": "text_fixed_512_177664",
+              "source_type": "text_fixed_512",
+              "content": "Reference: This section contains structured data in: table_606_0]\n\n\n\nAny Question?\n\n..."
+            },
+            {
+              "chunk_id": "text_fixed_256_177664",
+              "source_type": "text_fixed_256",
+              "content": "Reference: This section contains structured data in: table_606_0]\n\n\n\nAny Question?\n\n..."
+            },
+            {
+              "chunk_id": "text_fixed_256_64256",
+              "source_type": "text_fixed_256",
+              "content": "//www.youtube.com/watch?v=umxGfNQmDbs\nwould effectively eliminate the ability to stay\nanonymous.\n\n[Reference: This section contains structured data in: table_219_0]\n\n\n\nPrivacy\n\n[Reference: This sectio..."
+            },
+            {
+              "chunk_id": "text_fixed_512_62464",
+              "source_type": "text_fixed_512",
+              "content": "ata in: table_210_0, table_210_1, table_210_2]\n\n\n\nPoetry writing\nhttps://sites.research.google/versebyverse/\n\nTackle social problems\nA high-resolution population density map layer for\nPretoria, South ..."
+            }
+          ],
+          "answer": "Based on the provided context, there is no explicit answer to the question \"How can it be prevented?\".\n\nThe text mentions several topics:\n*   **Privacy:** It states that a specific video (or topic) \"would effectively eliminate the ability to stay anonymous,\" but it does not provide a method to prevent this. The text appears to be cut off (\"In the sp...\").\n*   **AI for IT Operations:** It mentions \"Saving energy by cooling data centers,\" but this is presented as a method for saving energy, not as a prevention for the privacy issue mentioned elsewhere.\n\nSince the relevant section regarding privacy is incomplete and no other section addresses prevention, the information is not available in the context.",
+          "system": "Enhanced Parse + Enhanced RAG",
+          "time": "125.88s"
+        },
+        {
+          "answer": "Based on the provided context, the question refers to preventing **overfitting**.\n\nTo prevent overfitting, there needs to be a fairly equal distribution of training samples for each classification, or range if the label is a real value.\n\nAdditionally, the context includes a code example for splitting data into training and testing sets:\n\n```python\nSplit the data, with 80% train and 20% test\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)\n```",
+          "sources": [
+            {
+              "chunk_id": "text_window_800_177600",
+              "source_type": "text_sliding_window_800",
+              "content": "s section contains structured data in: table_605_0]\n\n\n\nMoodle\n\n[Reference: This section contains structured data in: table_606_0]\n\n\n\nAny Question?\n\n..."
+            },
+            {
+              "chunk_id": "text_fixed_512_177664",
+              "source_type": "text_fixed_512",
+              "content": "Reference: This section contains structured data in: table_606_0]\n\n\n\nAny Question?\n\n..."
+            },
+            {
+              "chunk_id": "text_fixed_256_177664",
+              "source_type": "text_fixed_256",
+              "content": "Reference: This section contains structured data in: table_606_0]\n\n\n\nAny Question?\n\n..."
+            },
+            {
+              "chunk_id": "text_fixed_256_35584",
+              "source_type": "text_fixed_256",
+              "content": "bably a cold”)\n\n[Reference: This section contains structured data in: table_138_0]\n\n\n\nDemo: Identify a sport you would enjoy\n• Try this via clicking the weblink\nhttps://magicmonktutorials.com/IT/exper..."
+            },
+            {
+              "chunk_id": "text_fixed_256_64256",
+              "source_type": "text_fixed_256",
+              "content": "//www.youtube.com/watch?v=umxGfNQmDbs\nwould effectively eliminate the ability to stay\nanonymous.\n\n[Reference: This section contains structured data in: table_219_0]\n\n\n\nPrivacy\n\n[Reference: This sectio..."
+            },
+            {
+              "chunk_id": "text_window_800_4800",
+              "source_type": "text_sliding_window_800",
+              "content": "lled overfitting. To prevent overfitting, there needs to be a fairly\nequal distribution of training samples for each classification, or range if the\nlabel is a real value.\n\nData Imbalance-Overfitting\n..."
+            },
+            {
+              "chunk_id": "text_fixed_512_4608",
+              "source_type": "text_fixed_512",
+              "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+            },
+            {
+              "chunk_id": "text_fixed_256_4608",
+              "source_type": "text_fixed_256",
+              "content": "binary classifier (e.g., apple vs. pear), and\nnearly all the samples are of the same label (e.g., apple), then the model will\nsimply learn that everything is a label (apple).\nDATA\n▪ This is called ove..."
+            },
+            {
+              "chunk_id": "text_fixed_256_5120",
+              "source_type": "text_fixed_256",
+              "content": " Train\nTraining\nData\nData\n(90%\nApple,\n10%\nPear)\nTest\nPear\nModel\nData\nThe model will most likely predict the pear as an apple.\nTest Sample is a Pear\nApple\n\n[Reference: This section contains structured ..."
+            },
+            {
+              "chunk_id": "text_window_800_4200",
+              "source_type": "text_sliding_window_800",
+              "content": "Split the data, with 80% train and 20% test\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)\nseed for random\nsplitsize\nNumbergenerator\n\n[Reference: This sec..."
+            }
+          ],
+          "react_steps": 3,
+          "reflections_count": 2,
+          "thoughts": [
+            "I need to search for information about 'How can it be prevented?'. Note: Previous topic: what, overfitting, machine",
+            "The query 'How can it be prevented?' contains pronouns. Previous topic: what, overfitting, machine. I should search for 'what, overfitting, machine How can it be prevented?' instead.",
+            "I have sufficient information from the search to answer"
+          ],
+          "tools_used": [
+            "search"
+          ],
+          "original_query": "How can it be prevented?",
+          "rewritten_query": "How can it be prevented?",
+          "query_was_rewritten": false,
+          "system": "Enhanced Parse + Agentic RAG",
+          "time": "72.34s (with CoT)"
+        }
+      ]
+    },
+    {
+      "query_id": 5,
+      "category": "Multi-Hop Reasoning",
+      "query": "What are the types of machine learning and which one uses labeled data?",
+      "results": [
+        {
+          "method": "Naive RAG (dense_only)",
+          "top_scores": [
+            "0.8443",
+            "0.6977",
+            "0.6881"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "baseline_page_24",
+              "source_type": "baseline_page",
+              "content": "Types of Machine Learning \nDATA..."
+            },
+            {
+              "chunk_id": "baseline_page_38",
+              "source_type": "baseline_page",
+              "content": "Processes involved in Machine Learning..."
+            },
+            {
+              "chunk_id": "baseline_page_4",
+              "source_type": "baseline_page",
+              "content": "Outline\n▪Why Machine Learning\n▪What is Machine Learning\n▪Machine Learning vs Deep Learning\n▪Training and Test Data\n▪Types of Machine Learning \n▪Introduction to Scikit -Learn Library\n▪Supervised Machin..."
+            }
+          ],
+          "answer": "Based on the general subject matter outlined in the text provided (specifically the sections \"Types of Machine Learning\" and \"Supervised Machine Learning Algorithms\"), here is the answer:\n\nThe three main types of machine learning are:\n1.  **Supervised Learning**\n2.  **Unsupervised Learning**\n3.  **Reinforcement Learning**\n\n**Supervised Learning** is the type that uses labeled data.",
+          "system": "Naive Parse + Naive RAG",
+          "time": "8.67s"
+        },
+        {
+          "method": "Enhanced RAG (RRF + Rerank)",
+          "top_scores": [
+            "0.9949",
+            "0.9931",
+            "0.9868",
+            "0.9740",
+            "0.9728"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "text_window_800_6000",
+              "source_type": "text_sliding_window_800",
+              "content": "ccuracy from the validation data.\n5. Repeat the process k times, selecting a different partition each time for the\nvalidation data.\n6. Average the accuracy results.\n\n[Reference: This section contains ..."
+            },
+            {
+              "chunk_id": "text_fixed_256_6144",
+              "source_type": "text_fixed_256",
+              "content": "he accuracy results.\n\n[Reference: This section contains structured data in: table_24_0]\n\n\n\nTypes of Machine Learning\nDATA\n\nSupervised Learning\n▪ The computer learns by making use of\nlabeled data.\n▪ In..."
+            },
+            {
+              "chunk_id": "text_fixed_1024_6144",
+              "source_type": "text_fixed_1024",
+              "content": "he accuracy results.\n\n[Reference: This section contains structured data in: table_24_0]\n\n\n\nTypes of Machine Learning\nDATA\n\nSupervised Learning\n▪ The computer learns by making use of\nlabeled data.\n▪ In..."
+            },
+            {
+              "chunk_id": "text_fixed_256_6656",
+              "source_type": "text_fixed_256",
+              "content": "ction contains structured data in: table_28_0]\n\n\n\nSupervised Learning\n▪ The computer learns by making\nuse of labeled data.\n▪ In supervised learning, the\nalgorithm “learns” from the\ntraining dataset by..."
+            },
+            {
+              "chunk_id": "text_window_800_6600",
+              "source_type": "text_sliding_window_800",
+              "content": "loan data (Example)\nApproved or not\n\n[Reference: This section contains structured data in: table_28_0]\n\n\n\nSupervised Learning\n▪ The computer learns by making\nuse of labeled data.\n▪ In supervised learn..."
+            }
+          ],
+          "answer": "Based on the provided context, the type of machine learning mentioned is **Supervised Learning**.\n\n**Supervised Learning** is the type that uses **labeled data**. The text states that in supervised learning, the computer learns by making use of labeled data and iteratively making predictions on the data to adjust for the correct answer.",
+          "system": "Enhanced Parse + Enhanced RAG",
+          "time": "10.18s"
+        },
+        {
+          "answer": "Based on the provided context, here's what I can tell you about the types of machine learning and which one uses labeled data:\n\n## Types of Machine Learning\n\nThe context explicitly mentions **Supervised Learning** as one type of machine learning.\n\n## Which Type Uses Labeled Data?\n\n**Supervised Learning** is the type of machine learning that uses labeled data. In supervised learning:\n\n- The computer learns by making use of labeled data\n- The algorithm \"learns\" from the training dataset using this labeled information\n\nThe context includes an example where loan data is labeled as \"Approved or not,\" which illustrates how labeled data might be structured in a supervised learning scenario.\n\nThe context doesn't provide information about other types of machine learning that might exist (such as unsupervised learning or reinforcement learning), but it clearly establishes that supervised learning relies on labeled data for training.",
+          "sources": [
+            {
+              "chunk_id": "text_fixed_256_6144",
+              "source_type": "text_fixed_256",
+              "content": "he accuracy results.\n\n[Reference: This section contains structured data in: table_24_0]\n\n\n\nTypes of Machine Learning\nDATA\n\nSupervised Learning\n▪ The computer learns by making use of\nlabeled data.\n▪ In..."
+            },
+            {
+              "chunk_id": "text_fixed_512_6144",
+              "source_type": "text_fixed_512",
+              "content": "he accuracy results.\n\n[Reference: This section contains structured data in: table_24_0]\n\n\n\nTypes of Machine Learning\nDATA\n\nSupervised Learning\n▪ The computer learns by making use of\nlabeled data.\n▪ In..."
+            },
+            {
+              "chunk_id": "text_fixed_1024_6144",
+              "source_type": "text_fixed_1024",
+              "content": "he accuracy results.\n\n[Reference: This section contains structured data in: table_24_0]\n\n\n\nTypes of Machine Learning\nDATA\n\nSupervised Learning\n▪ The computer learns by making use of\nlabeled data.\n▪ In..."
+            },
+            {
+              "chunk_id": "text_fixed_256_6656",
+              "source_type": "text_fixed_256",
+              "content": "ction contains structured data in: table_28_0]\n\n\n\nSupervised Learning\n▪ The computer learns by making\nuse of labeled data.\n▪ In supervised learning, the\nalgorithm “learns” from the\ntraining dataset by..."
+            },
+            {
+              "chunk_id": "text_window_800_6600",
+              "source_type": "text_sliding_window_800",
+              "content": "loan data (Example)\nApproved or not\n\n[Reference: This section contains structured data in: table_28_0]\n\n\n\nSupervised Learning\n▪ The computer learns by making\nuse of labeled data.\n▪ In supervised learn..."
+            }
+          ],
+          "react_steps": 2,
+          "reflections_count": 1,
+          "thoughts": [
+            "I need to search for information about 'What are the types of machine learning and which one uses labeled data?'. Note: Previous topic: prevented",
+            "I have sufficient information from the search to answer"
+          ],
+          "tools_used": [
+            "search"
+          ],
+          "original_query": "What are the types of machine learning and which one uses labeled data?",
+          "rewritten_query": "What are the types of machine learning and which one uses labeled data?",
+          "query_was_rewritten": false,
+          "system": "Enhanced Parse + Agentic RAG",
+          "time": "28.51s (with CoT)"
+        }
+      ]
+    },
+    {
+      "query_id": 6,
+      "category": "Code + Concept",
+      "query": "Show me how to use scikit-learn to split a dataset into training and test sets.",
+      "results": [
+        {
+          "method": "Naive RAG (dense_only)",
+          "top_scores": [
+            "0.7953",
+            "0.7327",
+            "0.7081"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "baseline_page_62",
+              "source_type": "baseline_page",
+              "content": "Implementation of Linear Regression\nSplit the dataset into training and test dataset using sklearn..."
+            },
+            {
+              "chunk_id": "baseline_page_22",
+              "source_type": "baseline_page",
+              "content": "Cross Validation\nDATATraining  \nData\nT est  \nData\nTrain\nModel\nAccuracySplit Dataset into Training  and T est Use Training Data to Train the Model\nTraining  \nData\nV alidation\nData\nPredict  \nAccuracyRan..."
+            },
+            {
+              "chunk_id": "baseline_page_19",
+              "source_type": "baseline_page",
+              "content": "Random Splitting of the Dataset  \nAnother method is too pick rows at random .\n▪ Sci-kit learn has a built -in method\nDATAfrom sklearn.cross_validation  import  train_test_split\nncols  = dataset.shape ..."
+            }
+          ],
+          "answer": "Based on the provided context, specifically section [3], here is how to use scikit-learn to split a dataset into training and test sets:\n\n```python\nfrom sklearn.cross_validation import train_test_split\n\nncols = dataset.shape[1] # property shape[1] is the number of columns\nX = dataset.iloc[:, :-1] # X is all the features (exclude last column)\ny = dataset.iloc[:, ncols] # Y is the label (last column)\n\n# Split the data, with 80% train and 20% test\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)\n```\n\n**Explanation of the parameters:**\n*   **`test_size = 0.2`**: Allocates 20% of the data to the test set and the remaining 80% to the training set.\n*   **`random_state = 0`**: Sets the seed for the random number generator, ensuring the split is reproducible.",
+          "system": "Naive Parse + Naive RAG",
+          "time": "46.44s"
+        },
+        {
+          "method": "Enhanced RAG (RRF + Rerank)",
+          "top_scores": [
+            "0.9963",
+            "0.9963",
+            "0.9917",
+            "0.9872",
+            "0.9850"
+          ],
+          "retrieved_chunks": [
+            {
+              "chunk_id": "table_20_0",
+              "source_type": "table",
+              "content": "| 0                                                     | 1                                                                                            |\n|:---------------------------------------------..."
+            },
+            {
+              "chunk_id": "text_window_800_3600",
+              "source_type": "text_sliding_window_800",
+              "content": "t(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitting of the Datase..."
+            },
+            {
+              "chunk_id": "text_fixed_256_3840",
+              "source_type": "text_fixed_256",
+              "content": "dom.\n▪ Sci-kit learn has a built-in method\nfrom sklearn.cross_validation import train_test_split\nncols = dataset.shape[ 1 ]\n# property shape[ 0 ] is the number of columns\nDATA\n# Assume label is the la..."
+            },
+            {
+              "chunk_id": "text_fixed_256_4096",
+              "source_type": "text_fixed_256",
+              "content": "is all the features (exclude last column)\ny = dataset.iloc[ :, ncols ] # Y is the label (last column)\n# Split the data, with 80% train and 20% test\nX_train, X_test, y_train, y_test = train_test_split(..."
+            },
+            {
+              "chunk_id": "text_fixed_512_3584",
+              "source_type": "text_fixed_512",
+              "content": "aset.iloc[ 1: int(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitti..."
+            }
+          ],
+          "answer": "Based on the provided context, here is how you can use scikit-learn to split a dataset into training and test sets:\n\n**1. Import the built-in method**\nFirst, you need to import `train_test_split` from `sklearn.cross_validation`:\n```python\nfrom sklearn.cross_validation import train_test_split\n```\n\n**2. Define Features (X) and Labels (y)**\nAssuming the label is the last column in your dataset, you can separate the features and the label using the following code:\n```python\nncols = dataset.shape[ 1 ]\n# X is all the features (exclude last column)\nX = dataset.iloc[ :, :-1 ]\n# Y is the label (last column)\ny = dataset.iloc[ :, ncols ]\n```\n\n**3. Split the Data**\nUse the `train_test_split` function to divide the data. The example below splits the data so that 80% is used for training and 20% is used for testing.\n```python\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)\n```\n\n*   **`test_size = 0.2`**: Specifies that 20% of the data should be allocated to the test set.\n*   **`random_state = 0`**: Sets the seed for the random number generator to ensure the split is reproducible.",
+          "system": "Enhanced Parse + Enhanced RAG",
+          "time": "46.54s"
+        },
+        {
+          "answer": "Based on the provided context, you can use the `train_test_split` function from the `sklearn.cross_validation` module to split your dataset. Here is the step-by-step process and code:\n\n**1. Import the necessary function**\n```python\nfrom sklearn.cross_validation import train_test_split\n```\n\n**2. Prepare your Features (X) and Labels (y)**\nAssuming your label is in the last column of the dataset, you can separate the features and labels using the following code:\n```python\nncols = dataset.shape[1] \nX = dataset.iloc[:, :ncols] # X is all the features (exclude last column)\ny = dataset.iloc[:, ncols]  # Y is the label (last column)\n```\n\n**3. Split the data**\nYou can use the `train_test_split",
+          "sources": [
+            {
+              "chunk_id": "table_20_0",
+              "source_type": "table",
+              "content": "| 0                                                     | 1                                                                                            |\n|:---------------------------------------------..."
+            },
+            {
+              "chunk_id": "text_window_800_3600",
+              "source_type": "text_sliding_window_800",
+              "content": "t(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitting of the Datase..."
+            },
+            {
+              "chunk_id": "text_fixed_256_3840",
+              "source_type": "text_fixed_256",
+              "content": "dom.\n▪ Sci-kit learn has a built-in method\nfrom sklearn.cross_validation import train_test_split\nncols = dataset.shape[ 1 ]\n# property shape[ 0 ] is the number of columns\nDATA\n# Assume label is the la..."
+            },
+            {
+              "chunk_id": "text_fixed_512_3584",
+              "source_type": "text_fixed_512",
+              "content": "aset.iloc[ 1: int(nrows * .8) , : ]\n80% rows 20% rows allcolumns\ntest = dataset.iloc[int(nrows * .8) +1, nrows, : ]\n\n[Reference: This section contains structured data in: table_19_0]\n\n\n\nRandom Splitti..."
+            },
+            {
+              "chunk_id": "text_fixed_256_4096",
+              "source_type": "text_fixed_256",
+              "content": "is all the features (exclude last column)\ny = dataset.iloc[ :, ncols ] # Y is the label (last column)\n# Split the data, with 80% train and 20% test\nX_train, X_test, y_train, y_test = train_test_split(..."
+            }
+          ],
+          "react_steps": 2,
+          "reflections_count": 1,
+          "thoughts": [
+            "I need to search for information about 'Show me how to use scikit-learn to split a dataset into training and test sets.'. Note: Previous topic: what, types, machine",
+            "I have sufficient information from the search to answer"
+          ],
+          "tools_used": [
+            "search"
+          ],
+          "original_query": "Show me how to use scikit-learn to split a dataset into training and test sets.",
+          "rewritten_query": "Show me how to use scikit-learn to split a dataset into training and test sets.",
+          "query_was_rewritten": false,
+          "system": "Enhanced Parse + Agentic RAG",
+          "time": "56.68s (with CoT)"
+        }
+      ]
+    }
+  ]
+}

@@ -57,7 +57,7 @@ class QianfanClient:
             batch = texts[i : i + BATCH_SIZE]
             payload = {"model": RAGConfig.EMBEDDING_MODEL, "input": batch}
             try:
-                res = requests.post(f"{self.base_url}/embeddings", headers=self.headers, json=payload, timeout=60)
+                res = requests.post(f"{self.base_url}/embeddings", headers=self.headers, json=payload, timeout=300)
                 res.raise_for_status()
                 data = res.json()
                 if "data" in data:
@@ -80,7 +80,7 @@ class QianfanClient:
             payload["top_n"] = top_k
 
         try:
-            res = requests.post(f"{self.base_url}/rerank", headers=self.headers, json=payload, timeout=30)
+            res = requests.post(f"{self.base_url}/rerank", headers=self.headers, json=payload, timeout=600)
             res.raise_for_status()
             results = res.json().get("results", [])
             return [(item["index"], item["relevance_score"]) for item in results]
@@ -237,7 +237,8 @@ class RAGPipeline:
         return [(doc_lookup[did], score) for did, score in sorted_ids[:top_k] if did in doc_lookup]
 
     def generate(self, query: str, docs: List[Document]) -> str:
-        MAX_CHARS = 6000 # Safety limit
+        # 拉满：GLM-4.7 支持 200K 上下文，约 150K 字符
+        MAX_CHARS = 150000
         context = []
         curr_len = 0
         for i, d in enumerate(docs):
@@ -253,10 +254,13 @@ class RAGPipeline:
         headers = {"Authorization": f"Bearer {self.glm_key}"}
         payload = {
             "model": RAGConfig.CHAT_MODEL,
-            "messages": [{"role": "user", "content": prompt}]
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": 32768,      # 拉满：32K tokens
+            "temperature": 0.7,
+            "top_p": 0.9
         }
         try:
-            res = requests.post(url, headers=headers, json=payload, timeout=60)
+            res = requests.post(url, headers=headers, json=payload, timeout=600)
             res.raise_for_status()
             data = res.json()
 
@@ -280,19 +284,68 @@ class RAGPipeline:
             print(f"GLM Generation Error: {e}")
             return f"Error: {str(e)}"
 
-    def run(self, query: str, mode: str = 'hybrid'):
+    def run(self, query: str, mode: str = 'hybrid', use_submodular: bool = False):
         """
         Main entry point.
         mode: 'hybrid' (uses reranker), 'dense_only' (no reranker), 'bm25_only'
+        use_submodular: if True, apply submodular optimization after reranking for diversity
         """
         retrieved_tuples = self.hybrid_retrieve(query, top_k=15, mode=mode)
 
         if mode == 'hybrid':
             # Only rerank in hybrid/enhanced mode
             reranked = self.qianfan_client.rerank(query, [d.content for d, _ in retrieved_tuples], top_k=5)
-            final_docs = [retrieved_tuples[i][0] for i, score in reranked]
-            top_scores = [f"{score:.4f}" for _, score in reranked]
-            method_name = "Enhanced RAG (RRF + Rerank)"
+
+            if use_submodular and len(reranked) > 3:
+                # Apply submodular optimization for diversity
+                from .submodular import diversify_rag_results
+
+                # Build index map: reranker_index -> original_document
+                reranker_idx_to_doc = {i: retrieved_tuples[idx][0] for i, (idx, score) in enumerate(reranked)}
+
+                # Prepare chunks for diversification
+                chunks_for_diversify = []
+                for i, (idx, score) in enumerate(reranked):
+                    doc = retrieved_tuples[idx][0]
+                    chunks_for_diversify.append({
+                        "chunk_id": doc.doc_id,
+                        "content": doc.content,
+                        "score": score,
+                        "metadata": doc.metadata
+                    })
+
+                # Diversify - returns top-k diverse chunks
+                diversified = diversify_rag_results(
+                    chunks_for_diversify,
+                    top_k=3,
+                    similarity_threshold=0.85,
+                    diversity_penalty=0.7
+                )
+
+                # Map back to original documents using chunk_id
+                final_docs = []
+                top_scores = []
+                seen_ids = set()
+
+                for chunk in diversified:
+                    chunk_id = chunk["chunk_id"]
+                    if chunk_id not in seen_ids:
+                        # Find the original document
+                        for doc, _ in retrieved_tuples:
+                            if doc.doc_id == chunk_id:
+                                final_docs.append(doc)
+                                top_scores.append(f"{chunk['score']:.4f}")
+                                seen_ids.add(chunk_id)
+                                break
+
+                    if len(final_docs) >= 3:
+                        break
+
+                method_name = "Enhanced RAG (RRF + Rerank + Submodular)"
+            else:
+                final_docs = [retrieved_tuples[i][0] for i, score in reranked]
+                top_scores = [f"{score:.4f}" for _, score in reranked]
+                method_name = "Enhanced RAG (RRF + Rerank)"
         else:
             # Naive mode: take top 3 directly
             final_docs = [d for d, _ in retrieved_tuples[:3]]
