@@ -685,6 +685,10 @@ Answer (just one word: Yes/No/Partial):"""
                     # 内容被截断，尝试获取完整信息
                     return f"The content was incomplete. Let me search for the full definition of {query}"
 
+                elif issue == "incomplete_comparison":
+                    # 【新增】对比不完整：强制要求更全面的搜索
+                    return f"The search results seem incomplete for a comparison task (too few points found). I need to search specifically for a 'full comparison table' or more detailed differences regarding {query}."
+
                 else:
                     # 其他问题，重新搜索
                     return f"Previous search had quality issues. Let me try searching for {query} with a different approach"
@@ -816,6 +820,26 @@ Answer (just one word: Yes/No/Partial):"""
         if not semantic_check["is_satisfactory"]:
             return semantic_check
 
+        # =========================================================
+        # 检查 6: 针对对比/列表类问题的完整性检查 (Completeness Check)
+        # =========================================================
+        is_comparison = any(w in query.lower() for w in ["compare", "difference", "vs", "versus", "distinction", "list", "types of"])
+
+        if is_comparison:
+            # 统计结构化标记：Markdown表格(|), 列表项(-, *)
+            # 如果内容虽然长，但只是一大段废话，没有分点，对于对比题来说也是不合格的
+            structure_score = answer.count("|") + answer.count("\n-") + answer.count("\n*") + answer.count("\n1.")
+
+            # 阈值设定：
+            # 1. 如果包含表格符号 '|' 少于 4 个（说明连表头都没有），且列表项少于 3 个
+            # 2. 并且还没达到最大迭代次数（给它重试的机会）
+            if structure_score < 3 and iteration < self.max_iterations:
+                return {
+                    "is_satisfactory": False,
+                    "summary": f"Potential incomplete comparison (score: {structure_score})",
+                    "issue": "incomplete_comparison"  # 新的 issue 类型
+                }
+
         # 通过所有检查
         return {
             "is_satisfactory": True,
@@ -858,6 +882,9 @@ Answer (just one word: Yes/No/Partial):"""
 
         context_str = "\n".join(all_context) if all_context else "No context available"
 
+        # 【核心修改】检测对比类问题，注入强制完整性的指令
+        is_comparison_query = any(w in query.lower() for w in ["compare", "difference", "vs", "versus", "distinction"])
+
         # 改进的Prompt - 支持对比类问题
         if was_decomposed:
             # 拆解查询的专用prompt
@@ -879,8 +906,31 @@ Instructions:
 
 Answer:"""
         else:
-            # 标准prompt
-            prompt = f"""You are a helpful assistant. Based on the following retrieved context, answer the user's question thoroughly.
+            # 标准prompt - 针对对比类问题加强指令
+            if is_comparison_query:
+                # 对比类问题的强化 prompt
+                prompt = f"""Based on the following retrieved context, answer the user's question.
+
+User Question: {query}
+
+Context:
+{context_str}
+
+Instructions:
+1. Answer the question using ONLY the provided context.
+2. If the context doesn't contain enough information, say so.
+3. Be concise and direct.
+4. Include specific details from the context when relevant.
+
+CRITICAL RULES FOR COMPARISON/LISTS:
+- If the user asks to COMPARE items (e.g., "difference", "vs"), you MUST list ALL differences found in the context.
+- Do NOT summarize or pick just one point. Be comprehensive.
+- If the context contains a TABLE (marked by '|'), please reconstruct the table in your answer or list every row clearly.
+
+Answer:"""
+            else:
+                # 普通问题的标准 prompt
+                prompt = f"""You are a helpful assistant. Based on the following retrieved context, answer the user's question thoroughly.
 
 User Question: {query}
 
